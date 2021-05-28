@@ -48,7 +48,7 @@ body{
 
 
 .center{
-    margin: auto;
+    margin: 140px auto;
     width: 50%;
     text-align: center;
     padding: 200px 0;
@@ -61,7 +61,7 @@ body{
     margin: auto;
     justify-content: center;
     position: absolute;
-    top: 15%;
+    top: 27%;
     left: 15%;
     right: 15%;
 }
