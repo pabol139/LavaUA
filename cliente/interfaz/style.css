@@ -259,3 +259,14 @@ img{
     box-shadow: 0 0 4px #999;
     outline: none;
   }
+
+
+  /*TRANSICION*/
+
+
+  #inicio{
+    position: relative;
+    left: 0;
+    transition: 2s left;
+   
+  }

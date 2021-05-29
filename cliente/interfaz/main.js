@@ -1,6 +1,10 @@
 var lavadora;
 
 
+
+/* TRANSICION */ 
+
+
 function cambiarLavar() {
     if (document.getElementById('inicio')) {
 
@@ -281,5 +285,13 @@ function slide(offset) {
 }
 
 slide(0);
+
+
+function mover(){
+
+    document.getElementById('inicio').style.left =  -400 + 'px';
+}
+
+
 
 
