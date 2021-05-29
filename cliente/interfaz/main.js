@@ -249,9 +249,8 @@ function prClick(){
 function plClick(){
     slide(1);
 }
-/*
-pr.onclick = slide.bind( this, -1 );
-pl.onclick = slide.bind( this, 1 );*/
+
+
 
 var index = 0, total = 7;
 
@@ -260,6 +259,13 @@ function slide(offset) {
 
   index = Math.min( Math.max( index + offset, 0 ), total - 1 );
   console.log(index);
+  if(index+1==1){
+    document.querySelector( '.counter' ).innerHTML = "Lavar";
+  }else if(index+1==2){
+    document.querySelector( '.counter' ).innerHTML = "Secar";
+  
+  }
+  /*
   if(index+1==1){
     document.querySelector( '.counter' ).innerHTML = "Tipo Lavado";
   }else if(index+1==2){
@@ -278,10 +284,10 @@ function slide(offset) {
     document.querySelector( '.counter' ).innerHTML = "Rapido 15 min";
   } 
 
+*/
 
-
-  /*pr.setAttribute( 'data-state', index === 0 ? 'disabled' : '' );
-  pl.setAttribute( 'data-state', index === total - 1 ? 'disabled' : '' );*/
+  pr.setAttribute( 'data-state', index === 0 ? 'disabled' : '' );
+  pl.setAttribute( 'data-state', index === total - 1 ? 'disabled' : '' );
 }
 
 slide(0);
