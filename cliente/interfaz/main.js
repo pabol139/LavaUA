@@ -24,7 +24,7 @@ function cambiarLavar() {
 //Esconde todas las ventanas excepto la de inicio
 /*
 function esconderVentanas(){
-	document.getElementById('lavarScreen').style.display = 'none';
+    document.getElementById('lavarScreen').style.display = 'none';
 }
 */
 
@@ -253,8 +253,9 @@ function plClick(tipo){
 
 
 
-var index = 0, total = 7;
+var index = 0, total = 8;
 var index2 = 0, total2 = 2;
+var minuts = 0;
 
 function slide(offset, tipo) {
         console.log("entraaaaa");
@@ -267,31 +268,64 @@ function slide(offset, tipo) {
   if(tipo == 0){
 
     if(index2+1==1){
+        //document.querySelector( '.counter' ).innerHTML = "Lavar";
         document.querySelector( '.counter' ).innerHTML = "<img src=\"img/washing-machine2.svg\" class=\"filter-blue\" width=\"50px\" height=\"50px\" id=\"lavar\"/>Lavar";
       }else if(index2+1==2){
+        //document.querySelector( '.counter' ).innerHTML = "Secar";
         document.querySelector( '.counter' ).innerHTML = "<img src=\"img/dry.svg\" class=\"filter-blue\" width=\"50px\" height=\"50px\" id=\"lavar\"/>Secar";
-      
       }
 
   }else{
 
     if(index+1==1){
         document.querySelector( '.counter2' ).innerHTML = "Tipo Lavado";
+        document.getElementById("cero").checked = false;
+        document.getElementById("veinte").checked = false;
+        document.getElementById("treinta").checked = false;
+        document.getElementById("cuarenta").checked = false;
+        document.getElementById("sesenta").checked = false;
+        document.getElementById("noventa").checked = false;
+
+        document.getElementById("na").checked = false;
+        document.getElementById("cua").checked = false;
+        document.getElementById("och").checked = false;
+        document.getElementById("mil").checked = false;
+        document.getElementById("mildo").checked = false;
+        document.getElementById("milci").checked = false;
       }else if(index+1==2){
         document.querySelector( '.counter2' ).innerHTML = "Lana/Seda";
+        document.getElementById("veinte").checked = true;
+        document.getElementById("cua").checked = true;
       }else if(index+1==3){
         document.querySelector( '.counter2' ).innerHTML = "Sport";
+        document.getElementById("treinta").checked = true;
+        document.getElementById("mil").checked = true;
       }else if(index+1==4){
         document.querySelector( '.counter2' ).innerHTML = "Algodon";
+        document.getElementById("veinte").checked = true;
+        document.getElementById("och").checked = true;
       }else if(index+1==5){
         document.querySelector( '.counter2' ).innerHTML = "Sinteticos";
+        document.getElementById("cuarenta").checked = true;
+        document.getElementById("mil").checked = true;
       }else if(index+1==6){
         document.querySelector( '.counter2' ).innerHTML = "Delicados";
+        document.getElementById("veinte").checked = true;
+        document.getElementById("cua").checked = true;
       }else if(index+1==7){
         document.querySelector( '.counter2' ).innerHTML = "Rapido 30 min";
+        document.getElementById("sesenta").checked = true;
+        document.getElementById("milci").checked = true;
       }else if(index+1==8){
         document.querySelector( '.counter2' ).innerHTML = "Rapido 15 min";
+        document.getElementById("noventa").checked = true;
+        document.getElementById("mildo").checked = true;
       } 
+
+
+      if(offset!=0){
+        calculoMinutos();
+        }
 
 
   }
@@ -308,6 +342,45 @@ function mover(){
 
     document.getElementById('inicio').style.left =  -400 + 'px';
     cambiarLavar();
+}
+
+
+function calculoMinutos(){
+    if(document.getElementById("lavarScreen")){
+        console.log("fff");
+        minuts = 0;
+
+        if(document.getElementById("cero").checked == true){
+            minuts+=0;
+        }else if(document.getElementById("veinte").checked == true){
+            minuts+=30;
+        }else if(document.getElementById("treinta").checked == true){
+            minuts+=25;
+        }else if(document.getElementById("cuarenta").checked == true){
+            minuts+=20;
+        }else if(document.getElementById("sesenta").checked == true){
+            minuts+=15;
+        }else if(document.getElementById("noventa").checked == true){
+            minuts+=10;
+        }
+
+        if(document.getElementById("na").checked == true){
+            minuts+=0;
+        }else if(document.getElementById("cua").checked == true){
+            minuts+=10;
+        }else if(document.getElementById("och").checked == true){
+            minuts+=20;
+        }else if(document.getElementById("mil").checked == true){
+            minuts+=10;
+        }else if(document.getElementById("mildo").checked == true){
+            minuts+=5;
+        }else if(document.getElementById("milci").checked == true){
+            minuts+=15;
+        }
+
+        document.getElementById('texto').innerHTML = minuts + ":00";
+
+    }
 }
 
 
