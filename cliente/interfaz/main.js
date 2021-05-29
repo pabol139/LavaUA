@@ -12,7 +12,9 @@ function cambiarLavar() {
             document.getElementById('inicio').style.display = 'none';
             document.getElementById('lavarScreen').style.display = 'block';
         }
+        slide(0);
     }
+
 }
 
 //Esconde todas las ventanas excepto la de inicio
@@ -230,5 +232,44 @@ lavadora.on("connect", function () { // Esparar a que la librería se conecte co
     });
 });
 */
+
+
+// Lista flechas
+var pr = document.querySelector( '.fa.fa-arrow-up');
+var pl = document.querySelector( '.fa.fa-arrow-down');
+
+function prClick(){
+    slide(-1);
+}
+
+function plClick(){
+    slide(1);
+}
+/*
+pr.onclick = slide.bind( this, -1 );
+pl.onclick = slide.bind( this, 1 );*/
+
+var index = 0, total = 3;
+
+function slide(offset) {
+        console.log("entraaaaa");
+
+  index = Math.min( Math.max( index + offset, 0 ), total - 1 );
+  console.log(index);
+  if(index+1==1){
+    document.querySelector( '.counter' ).innerHTML = "Lavar";
+  }else if(index+1==2){
+    document.querySelector( '.counter' ).innerHTML = "Lavar y Secar";
+  }else if(index+1==3){
+    document.querySelector( '.counter' ).innerHTML = "Secar";
+  } 
+
+
+
+  /*pr.setAttribute( 'data-state', index === 0 ? 'disabled' : '' );
+  pl.setAttribute( 'data-state', index === total - 1 ? 'disabled' : '' );*/
+}
+
+slide(0);
 
 
