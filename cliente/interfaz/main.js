@@ -36,6 +36,14 @@ function conectaLavadora() {
         console.log("Con este hay " + lavadora.clientes + " clientes conectados");
         
         inicio();
+
+        var bloqueo = document.getElementById("lock");
+            lock.addEventListener("click", function () {
+                lavadora.puertaBloqueada = !lavadora.puertaBloqueada;
+            });
+            lavadora.on("puertaBloqueada", function (bloqueado) {
+                bloqueo.innerHTML = bloqueado ? "<i class=\"fas fa-lock\"></i>" : "<i class=\"fas fa-lock-open\"></i>";
+            });
     });
 }
 
@@ -56,6 +64,19 @@ function inicio() {
 
         });
   
+}
+
+function bloqueo() {
+        
+    lavadora.on(sensor, function comprobarNivel(nivelActual) { // monitorizar el sensor
+        if (nivelActual >= nivel) { // se ha alzanzado el nivel
+            lavadora.off(sensor, comprobarNivel); // dejar de monitorizar
+            console.log("    - Cerrar válvula:", valvula);
+            lavadora[valvula] = false; // cerrar la válvula
+            callback();
+        }
+    });
+
 }
 
 
