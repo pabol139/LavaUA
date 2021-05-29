@@ -48,10 +48,10 @@ function inicio() {
         reloj();
             
         if(lavadora.puertaAbierta == true)
-            document.getElementById("puerta").innerHTML = "si";
+            document.getElementById("puerta").style.filter = "invert(18%) sepia(99%) saturate(6525%) hue-rotate(120deg) brightness(102%) contrast(104%)";
 
         else
-            document.getElementById("puerta").innerHTML = "no";
+            document.getElementById("puerta").style.filter = "invert(15%) sepia(89%) saturate(7107%) hue-rotate(3deg) brightness(95%) contrast(116%)";
 
 
         });

@@ -12,6 +12,30 @@ body{
 }
 
 
+/* ICONO DE LA PUERTA 
+
+.filter-green{
+    filter: invert(15%) sepia(89%) saturate(7107%) hue-rotate(3deg) brightness(95%) contrast(116%);
+
+}
+*/
+
+img{
+
+
+    /* padding: 14px 16px; */
+    /* font-size: 49px; */
+    display: block;
+    /* margin-right: 28%; */
+    top: .6em;
+    right: 9.3em;
+    /* margin: 20% 24% 0 0; */
+    position: absolute;
+    color: white;
+    text-align: center;
+
+}
+
 .navbar{
 
 
@@ -31,6 +55,21 @@ body{
 
 }
 
+#hora{
+
+
+    margin-right: -2.3em;
+
+}
+
+#hora:hover{
+
+
+    color: white;
+
+
+}
+
 .navbar li a{
 
     display: block;
@@ -38,6 +77,7 @@ body{
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-size: 30px;
 
 }
 
