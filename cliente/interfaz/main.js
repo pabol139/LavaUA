@@ -249,7 +249,7 @@ function plClick(){
 pr.onclick = slide.bind( this, -1 );
 pl.onclick = slide.bind( this, 1 );*/
 
-var index = 0, total = 3;
+var index = 0, total = 7;
 
 function slide(offset) {
         console.log("entraaaaa");
@@ -257,11 +257,21 @@ function slide(offset) {
   index = Math.min( Math.max( index + offset, 0 ), total - 1 );
   console.log(index);
   if(index+1==1){
-    document.querySelector( '.counter' ).innerHTML = "Lavar";
+    document.querySelector( '.counter' ).innerHTML = "Tipo Lavado";
   }else if(index+1==2){
-    document.querySelector( '.counter' ).innerHTML = "Lavar y Secar";
+    document.querySelector( '.counter' ).innerHTML = "Lana/Seda";
   }else if(index+1==3){
-    document.querySelector( '.counter' ).innerHTML = "Secar";
+    document.querySelector( '.counter' ).innerHTML = "Sport";
+  }else if(index+1==4){
+    document.querySelector( '.counter' ).innerHTML = "Algodon";
+  }else if(index+1==5){
+    document.querySelector( '.counter' ).innerHTML = "Sinteticos";
+  }else if(index+1==6){
+    document.querySelector( '.counter' ).innerHTML = "Delicados";
+  }else if(index+1==7){
+    document.querySelector( '.counter' ).innerHTML = "Rapido 30 min";
+  }else if(index+1==8){
+    document.querySelector( '.counter' ).innerHTML = "Rapido 15 min";
   } 
 
 
