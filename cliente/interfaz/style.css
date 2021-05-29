@@ -11,6 +11,7 @@ body{
     margin: 0;
 }
 
+
 .navbar{
 
 
@@ -113,13 +114,6 @@ body{
                 inset 2px 2px 2px rgba(255, 255, 255, .075),
                 inset 2px 2px 4px rgba(0, 0, 0, .15);
   }
-
-
-/*CSS DE VENTANA DE LAVADO*/
-.lavar{
-    display: none;
-}
-
 
 
 /*CIRCULO CON PULSO*/

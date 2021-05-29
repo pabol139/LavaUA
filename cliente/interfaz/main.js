@@ -6,17 +6,23 @@ function cambiarLavar() {
 
         if (document.getElementById('inicio').style.display == 'none') {
             document.getElementById('inicio').style.display = 'block';
-            document.getElementById('lavar').style.display = 'none';
+            document.getElementById('lavarScreen').style.display = 'none';
         }
         else {
             document.getElementById('inicio').style.display = 'none';
-            document.getElementById('lavar').style.display = 'block';
+            document.getElementById('lavarScreen').style.display = 'block';
         }
     }
 }
 
+//Esconde todas las ventanas excepto la de inicio
+function esconderVentanas(){
+	document.getElementById('lavarScreen').style.display = 'none';
+}
 
 
+
+document.addEventListener('DOMContentLoaded', esconderVentanas, false);
 
 
 document.addEventListener('DOMContentLoaded', conectaLavadora, false);
