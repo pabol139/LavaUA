@@ -91,7 +91,7 @@ img{
 .center{
     /*margin: 140px auto;
     width: 50%;*/
-    margin: auto;
+    margin: -3em auto;
     width: 95%;
     text-align: center;
     padding: 200px 0;
@@ -101,11 +101,8 @@ img{
 
     display: flex;
     margin: auto;
-    justify-content: center;
-    /*position: absolute;
-    top: 27%;
-    left: 15%;
-    right: 15%;*/
+    width: 25em;
+    justify-content: space-between;
     margin-bottom: 50px;
 }
 
@@ -159,22 +156,21 @@ img{
 /*CIRCULO CON PULSO*/
 
 .blob {
-	background: white;
-	border-radius: 50%;
+    background: white;
+    border-radius: 50%;
     border: 5px solid aqua;
-	margin: auto;
-	height: 250px;
-	width: 250px;
-
-	box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
-	transform: scale(1);
-	animation: pulse 2s infinite;
+    margin: auto;
+    height: 350px;
+    width: 350px;
+    box-shadow: 0 0 0 0 rgb(0 0 0);
+    transform: scale(1);
+    animation: pulse 2s infinite;
 }
 
 .blob p{
 
-    padding-top: 26%;
-    font-size: 33px;
+    padding-top: 32%;
+    font-size: 35px;
 }
 
 @keyframes pulse {
@@ -230,3 +226,33 @@ img{
   text-shadow: 0px 2px 0px rgba( 0, 0, 0, 0.2 );
   color: #000;
 }
+
+
+/*BOTONES */
+/* Ripple effect */
+.ripple {
+    background-position: center;
+    transition: background 0.8s;
+  }
+  .ripple:hover {
+    background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+  }
+  .ripple:active {
+    background-color: #6eb9f7;
+    background-size: 100%;
+    transition: background 0s;
+  }
+  
+  /* Button style */
+  button {
+    border: none;
+    border-radius: 2px;
+    padding: 12px 40px;
+    font-size: 25px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: white;
+    background-color: #2196f3;
+    box-shadow: 0 0 4px #999;
+    outline: none;
+  }
