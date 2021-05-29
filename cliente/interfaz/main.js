@@ -267,9 +267,9 @@ function slide(offset, tipo) {
   if(tipo == 0){
 
     if(index2+1==1){
-        document.querySelector( '.counter' ).innerHTML = "Lavar";
+        document.querySelector( '.counter' ).innerHTML = "<img src=\"img/washing-machine2.svg\" class=\"filter-blue\" width=\"50px\" height=\"50px\" id=\"lavar\"/>Lavar";
       }else if(index2+1==2){
-        document.querySelector( '.counter' ).innerHTML = "Secar";
+        document.querySelector( '.counter' ).innerHTML = "<img src=\"img/dry.svg\" class=\"filter-blue\" width=\"50px\" height=\"50px\" id=\"lavar\"/>Secar";
       
       }
 
