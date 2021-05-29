@@ -49,46 +49,56 @@
 
 	<div class="opciones">
 		<div class="counter"></div>
-		<button class="paginate left" onclick="prClick();return false;"><i></i><i></i></button>
-		<button class="paginate right" onclick="plClick();return false;"><i></i><i></i></button>
+		<button class="paginate left" onclick="prClick(0);return false;"><i></i><i></i></button>
+		<button class="paginate right" onclick="plClick(0);return false;"><i></i><i></i></button>
 	</div>
 
 
 	<div class="lavadoOpciones">
+<div>
+	<p>Temperatura</p>
+	<div class="radioGroup">
+		<input type="radio" id="cero" name="temp" value="0">
+		<label for="cero">0ºC</label>
+		<input type="radio" id="veinte" name="temp" value="20">
+		<label for="veinte">20ºC</label>
+		<input type="radio" id="treinta" name="temp" value="30">
+		<label for="treinta">30ºC</label>
+		<input type="radio" id="cuarenta" name="temp" value="40">
+		<label for="cuarenta">40ºC</label>
+		<input type="radio" id="sesenta" name="temp" value="60">
+		<label for="sesenta">60ºC</label>
+		<input type="radio" id="noventa" name="temp" value="90">
+		<label for="noventa">90ºC</label>
+	</div>
+</div>
 
-		<div class="radioGroup">
-			<input type="radio" id="cero" name="temp" value="0">
-			<label for="cero">0ºC</label><br>
-			<input type="radio" id="veinte" name="temp" value="20">
-			<label for="veinte">20ºC</label><br>
-			<input type="radio" id="treinta" name="temp" value="30">
-			<label for="treinta">30ºC</label>
-			<input type="radio" id="cuarenta" name="temp" value="40">
-			<label for="cuarenta">40ºC</label>
-			<input type="radio" id="sesenta" name="temp" value="60">
-			<label for="sesenta">60ºC</label>
-			<input type="radio" id="noventa" name="temp" value="90">
-			<label for="noventa">90ºC</label>
-		</div>
 
 		<div class="container">
-		  <i class="fa fa-arrow-up" ></i>
-		  <div class="counter"></div>
-		  <i class="fa fa-arrow-down" ></i>
+			<p>Tipo</p>
+		  <i class="fa fa-arrow-up" onclick="prClick(1);return false;"></i>
+		  <div class="counter2"></div>
+		  <i class="fa fa-arrow-down" onclick="plClick(1);return false;"></i>
 		</div>
-		
-		<div class="radioGroup">
-			<input type="radio" id="na" name="centri" value="0">
-			<label for="na">No</label><br>
-			<input type="radio" id="cua" name="centri" value="400">
-			<label for="cua">400 RPM</label><br>
-			<input type="radio" id="och" name="centri" value="800">
-			<label for="och">800 RPM</label>
-			<input type="radio" id="mil" name="centri" value="1000">
-			<label for="mil">1000 RPM</label>
-			<input type="radio" id="mildo" name="centri" value="1200">
-			<label for="mildo">1200 RPM</label>
+		<div>
+			<p>Centrifugado</p>
+			<div class="radioGroup">
+				<input type="radio" id="na" name="centri" value="0">
+				<label for="na">No</label>
+				<input type="radio" id="cua" name="centri" value="400">
+				<label for="cua">400 RPM</label>
+				<input type="radio" id="och" name="centri" value="800">
+				<label for="och">800 RPM</label>
+				<input type="radio" id="mil" name="centri" value="1000">
+				<label for="mil">1000 RPM</label>
+				<input type="radio" id="mildo" name="centri" value="1200">
+				<label for="mildo">1200 RPM</label>
+				<input type="radio" id="milci" name="centri" value="1500">
+				<label for="milci">1500 RPM</label>
+			</div>
+
 		</div>
+	
 	</div>
 
 	<h4>EMPEZAR</h4>

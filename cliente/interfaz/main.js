@@ -15,7 +15,8 @@ function cambiarLavar() {
             document.getElementById('texto').innerHTML = "Elige un tipo";
 
 
-        slide(0);
+        slide(0, 0);
+        slide(0, 1);
     }
 
 }
@@ -242,52 +243,62 @@ lavadora.on("connect", function () { // Esparar a que la librería se conecte co
 var pr = document.querySelector( '.fa.fa-arrow-up');
 var pl = document.querySelector( '.fa.fa-arrow-down');
 
-function prClick(){
-    slide(-1);
+function prClick(tipo){
+    slide(-1, tipo);
 }
 
-function plClick(){
-    slide(1);
+function plClick(tipo){
+    slide(1, tipo);
 }
 
 
 
 var index = 0, total = 7;
+var index2 = 0, total2 = 2;
 
-function slide(offset) {
+function slide(offset, tipo) {
         console.log("entraaaaa");
 
   index = Math.min( Math.max( index + offset, 0 ), total - 1 );
-  console.log(index);
-  if(index+1==1){
-    document.querySelector( '.counter' ).innerHTML = "Lavar";
-  }else if(index+1==2){
-    document.querySelector( '.counter' ).innerHTML = "Secar";
-  
+  index2 = Math.min( Math.max( index2 + offset, 0 ), total2 - 1 );
+
+
+
+  if(tipo == 0){
+
+    if(index2+1==1){
+        document.querySelector( '.counter' ).innerHTML = "Lavar";
+      }else if(index2+1==2){
+        document.querySelector( '.counter' ).innerHTML = "Secar";
+      
+      }
+
+  }else{
+
+    if(index+1==1){
+        document.querySelector( '.counter2' ).innerHTML = "Tipo Lavado";
+      }else if(index+1==2){
+        document.querySelector( '.counter2' ).innerHTML = "Lana/Seda";
+      }else if(index+1==3){
+        document.querySelector( '.counter2' ).innerHTML = "Sport";
+      }else if(index+1==4){
+        document.querySelector( '.counter2' ).innerHTML = "Algodon";
+      }else if(index+1==5){
+        document.querySelector( '.counter2' ).innerHTML = "Sinteticos";
+      }else if(index+1==6){
+        document.querySelector( '.counter2' ).innerHTML = "Delicados";
+      }else if(index+1==7){
+        document.querySelector( '.counter2' ).innerHTML = "Rapido 30 min";
+      }else if(index+1==8){
+        document.querySelector( '.counter2' ).innerHTML = "Rapido 15 min";
+      } 
+
+
   }
-  /*
-  if(index+1==1){
-    document.querySelector( '.counter' ).innerHTML = "Tipo Lavado";
-  }else if(index+1==2){
-    document.querySelector( '.counter' ).innerHTML = "Lana/Seda";
-  }else if(index+1==3){
-    document.querySelector( '.counter' ).innerHTML = "Sport";
-  }else if(index+1==4){
-    document.querySelector( '.counter' ).innerHTML = "Algodon";
-  }else if(index+1==5){
-    document.querySelector( '.counter' ).innerHTML = "Sinteticos";
-  }else if(index+1==6){
-    document.querySelector( '.counter' ).innerHTML = "Delicados";
-  }else if(index+1==7){
-    document.querySelector( '.counter' ).innerHTML = "Rapido 30 min";
-  }else if(index+1==8){
-    document.querySelector( '.counter' ).innerHTML = "Rapido 15 min";
-  } 
 
-*/
-
+/*
   pr.setAttribute( 'data-state', index === 0 ? 'disabled' : '' );
-  pl.setAttribute( 'data-state', index === total - 1 ? 'disabled' : '' );
+  pl.setAttribute( 'data-state', index === total - 1 ? 'disabled' : '' );*/
 }
 
 slide(0);
