@@ -292,6 +292,9 @@ function slide(offset, tipo) {
         document.getElementById("mil").checked = false;
         document.getElementById("mildo").checked = false;
         document.getElementById("milci").checked = false;
+
+        document.getElementById('texto').innerHTML = "Elige un tipo";
+        offset=0;
       }else if(index+1==2){
         document.querySelector( '.counter2' ).innerHTML = "Lana/Seda";
         document.getElementById("veinte").checked = true;
