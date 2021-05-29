@@ -1,6 +1,23 @@
 var lavadora;
 
 
+function cambiarLavar() {
+    if (document.getElementById('inicio')) {
+
+        if (document.getElementById('inicio').style.display == 'none') {
+            document.getElementById('inicio').style.display = 'block';
+            document.getElementById('lavar').style.display = 'none';
+        }
+        else {
+            document.getElementById('inicio').style.display = 'none';
+            document.getElementById('lavar').style.display = 'block';
+        }
+    }
+}
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', conectaLavadora, false);
 
