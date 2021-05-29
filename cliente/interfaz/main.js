@@ -295,6 +295,7 @@ function slide(offset, tipo) {
 
         document.getElementById('texto').innerHTML = "Elige un tipo";
         offset=0;
+        minuts=0;
       }else if(index+1==2){
         document.querySelector( '.counter2' ).innerHTML = "Lana/Seda";
         document.getElementById("veinte").checked = true;
