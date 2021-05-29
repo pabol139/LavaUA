@@ -343,7 +343,7 @@ slide(0);
 
 function mover(){
 
-    document.getElementById('inicio').style.left =  -400 + 'px';
+    document.getElementById('inicio').style.left =  -450 + 'px';
     cambiarLavar();
 }
 
