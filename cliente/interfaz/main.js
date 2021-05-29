@@ -8,27 +8,27 @@ var lavadora;
 function cambiarLavar() {
     if (document.getElementById('inicio')) {
 
-        if (document.getElementById('inicio').style.display == 'none') {
-            document.getElementById('inicio').style.display = 'block';
-            document.getElementById('lavarScreen').style.display = 'none';
-        }
-        else {
-            document.getElementById('inicio').style.display = 'none';
-            document.getElementById('lavarScreen').style.display = 'block';
-        }
+           // document.getElementById('inicio').style.display = 'block';
+            document.getElementById('lavarScreen').style.transition = 'opacity 1.5s';
+            document.getElementById('lavarScreen').style.height = 'auto';
+            document.getElementById('lavarScreen').style.opacity = 1;
+            document.getElementById('texto').innerHTML = "Elige un tipo";
+
+
         slide(0);
     }
 
 }
 
 //Esconde todas las ventanas excepto la de inicio
+/*
 function esconderVentanas(){
 	document.getElementById('lavarScreen').style.display = 'none';
 }
+*/
 
 
-
-document.addEventListener('DOMContentLoaded', esconderVentanas, false);
+//document.addEventListener('DOMContentLoaded', esconderVentanas, false);
 
 
 document.addEventListener('DOMContentLoaded', conectaLavadora, false);
@@ -290,6 +290,7 @@ slide(0);
 function mover(){
 
     document.getElementById('inicio').style.left =  -400 + 'px';
+    cambiarLavar();
 }
 
 

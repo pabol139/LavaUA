@@ -62,6 +62,19 @@ img{
 
 }
 
+#lavarScreen{
+
+
+    position: absolute;
+    top: 16%;
+    width: 50%;
+    right: 2%;
+    display: block;
+    opacity: 0;
+    height: 0;
+
+}
+
 #hora:hover{
 
 
