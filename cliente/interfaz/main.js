@@ -246,35 +246,41 @@ function vaciar(sensor, valvula, nivel, callback) {
 // Establece una temperatura a un valor, encendiendo y apagando una resistencia durante un tiempo (ms)
 function termostato(sensor, resistencia, temp, duracion, callback) {
     function comprobarTemp(tempAct) {
-        if (tempAct < temp) resistencia = true;
-        if (tempAct > temp) resistencia = false;
+        if (tempAct < temp) lavadora[resistencia] = true;
+        if (tempAct > temp) lavadora[resistencia] = false;
     }
     lavadora.on(sensor, comprobarTemp);
+    comprobarTemp(lavadora[sensor]); // llamar la primera vez por si tiene que encender
     setTimeout(function () {
-        lavadora[resistencia] = false;
-        lavadora.off(sensor, comprobarTemp);
-        callback();
+    lavadora[resistencia] = false;
+    lavadora.off(sensor, comprobarTemp);
+    callback();
     }, duracion);
 }
+
+
 
 // Realiza un lavado
 function lavar(callback) {
     // Obtener parámetros del lavado
+    console.log(lavadora.peso);
     var
         detergente = lavadora.peso/100,
-        suavizante = detergente/2,
-        nivelAgua = ((lavadora.peso*100)/500)+5,
+        suavizante = Math.round(detergente/2),
+        nivelAgua = ((lavadora.peso*100)/5000)+5,
         temperaturaLavado = tempLavado,
         revolucionesLavado = centLavado,
         tiempoLavado = minutsLavado * 1000,
         revolucionesCentrifugado = centLavado,
         tiempoCentrifugado = minutsCentrifugado * 1000;
 
+        console.log(temperaturaLavado);
+
     // Puerta abierta
     if (lavadora.puertaAbierta) {
         alert("Puerta abierta!!!!");
         //MODAL DE CIERRA LA PUERTA CALVO
-        callback();
+        //callback();
         return;
     }
 
@@ -282,7 +288,7 @@ function lavar(callback) {
     if (!lavadora.peso) {
         alert("Parece que no hay ropa en la lavadora.");
         //MODAL DE PON ROPA FETIDO
-        callback();
+        //callback();
         return;
     }
 
@@ -290,7 +296,7 @@ function lavar(callback) {
     if (lavadora.peso>4000) {
         alert("Parece que hay demsiada ropa en la lavadora.");
         //MODAL DE QUITA ROPA FETIDO
-        callback();
+        //callback();
         return;
     }
 
@@ -298,15 +304,15 @@ function lavar(callback) {
     if (lavadora.filtroObstruido) {
         alert("Parece que el filtro esta pocho.");
         //MODAL DE FILTRO POCHO CERDO
-        callback();
+        //callback();
         return;
     }
 
     // Insuficiente detergente
     if (lavadora.nivelDetergente<detergente) {
-        alert("Parece que necesitas más detergente.");
+        alert("Parece que necesitas más detergente."+detergente);
         //MODAL DE PONLE DETERGENTE GUARRO
-        callback();
+        //callback();
         return;
     }
 
@@ -314,7 +320,7 @@ function lavar(callback) {
     if (lavadora.nivelSuavizante<suavizante) {
         alert("Parece que necesitas más suavizante.");
         //MODAL DE PONLE SUAVIZANTE GUARRO
-        callback();
+        //callback();
         return;
     }
 
@@ -350,7 +356,7 @@ function lavar(callback) {
                                     console.log("Fin del lavado!!!");
                                     lavadora.tamborRevoluciones = 0; // parar motor
                                     lavadora.puertaBloqueada = false; // desbloquear puerta
-                                    callback();
+                                    //callback();
                                 }, tiempoCentrifugado);
                             });
                         });

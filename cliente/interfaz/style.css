@@ -608,11 +608,10 @@ img{
 
 .radioGroup input[type="radio"]:checked + label {
     background-color:#007fff;
-    border-color: #4c4;
 }
 
 .radioGroup input[type="radio"]:focus + label {
-    border: 2px dashed #444;
+    border: .5px dashed #444;
 }
 
 .radioGroup label:hover {
