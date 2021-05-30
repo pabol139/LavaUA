@@ -44,6 +44,7 @@ function actividad(activo) {
 
                 slide(0, 0);
                 slide(0, 1);
+                slide(0, 2);
             }
             else {
 
@@ -494,9 +495,6 @@ function slide(offset, tipo) {
       if(offset!=0){
         calculoMinutos();
         }
-
-
-  }
 
 /*
   pr.setAttribute( 'data-state', index === 0 ? 'disabled' : '' );
