@@ -448,6 +448,17 @@ function slide(offset, tipo) {
         document.getElementById("noventa").checked = true;
         document.getElementById("mildo").checked = true;
       }
+
+      if(index==0)
+        document.querySelector( '.fa.fa-arrow-up').style.visibility ='hidden';
+      else
+        document.querySelector( '.fa.fa-arrow-up').style.visibility ='visible';
+
+      if(index==total-1)
+        document.querySelector( '.fa.fa-arrow-down').style.visibility ='hidden';
+      else
+        document.querySelector( '.fa.fa-arrow-down').style.visibility ='visible';
+
     }else{
 
     index3 = Math.min( Math.max( index3 + offset, 0 ), total3 - 1 );
@@ -479,18 +490,18 @@ function slide(offset, tipo) {
         document.getElementById("veintee").checked = true;
       }
 
+
+      if(index3==0)
+        document.querySelector( '#riba').style.visibility ='hidden';
+      else
+        document.querySelector( '#riba').style.visibility ='visible';
+
+      if(index3==total3-1)
+        document.querySelector( '#bajo').style.visibility ='hidden';
+      else
+        document.querySelector( '#bajo').style.visibility ='visible';
+
     }
-
-      if(index==0)
-        document.querySelector( '.fa.fa-arrow-up').style.visibility ='hidden';
-      else
-        document.querySelector( '.fa.fa-arrow-up').style.visibility ='visible';
-
-      if(index==total-1)
-        document.querySelector( '.fa.fa-arrow-down').style.visibility ='hidden';
-      else
-        document.querySelector( '.fa.fa-arrow-down').style.visibility ='visible';
-
 
       if(offset!=0){
         calculoMinutos();
