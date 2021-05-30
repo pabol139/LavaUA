@@ -5,30 +5,63 @@ var textoDinamico;
 /* TRANSICION */ 
 
 
-function cambiarLavar(activo) {
+function actividad(activo) {
     if (document.getElementById('inicio')) {
 
-           // document.getElementById('inicio').style.display = 'block';
             document.getElementById('lavarScreen').style.transition = 'opacity 1.5s';
+            document.getElementById('lavarOpciones').style.transition = 'opacity 1.5s';
+            document.getElementById('opciones').style.transition = 'opacity 1.5s';
 
             if(activo == 1){
-                document.getElementById('lavarScreen').style.height = 'auto';
+
                 document.getElementById('lavarScreen').style.opacity = 1;
+                document.getElementById('lavarOpciones').style.height = 'auto';
+                document.getElementById('lavarOpciones').style.opacity = 1;
+                document.getElementById('opciones').style.opacity = 1;
+
                 textoDinamico.innerHTML = "Elige un tipo";
                 slide(0, 0);
                 slide(0, 1);
             }
-            else{
+            else {
                 console.log(textoDinamico);
                 document.getElementById('lavarScreen').style.opacity = 0;
+                document.getElementById('lavarOpciones').style.opacity = 0;
+                document.getElementById('opciones').style.opacity = 0;
+
                 textoDinamico.innerHTML = "¡Bienvenido!";
 
             }
-
-
-
      
     }
+
+}
+
+function cambiarInterfaz(tipo) {
+
+            if(tipo == 1){
+
+                
+             //   document.getElementById('lavarScreen').innerHTML = "";
+
+             document.getElementById('secarOpciones').style.display = "none";
+             document.getElementById('lavarOpciones').style.display = "flex";
+             document.getElementById('retardo').style.display = "inline-block";
+
+
+
+            }
+            else if (tipo == 2){
+
+
+                document.getElementById('lavarOpciones').style.display = "none";
+                document.getElementById('secarOpciones').style.display = "flex";
+                document.getElementById('retardo').style.display = "none";
+
+
+            }
+     
+    
 
 }
 
@@ -307,9 +340,14 @@ function slide(offset, tipo) {
     if(index2+1==1){
         //document.querySelector( '.counter' ).innerHTML = "Lavar";
         document.querySelector( '.counter' ).innerHTML = "<img src=\"img/washing-machine2.svg\" class=\"filter-blue\" width=\"50px\" height=\"50px\" id=\"lavar\"/>Lavar";
+        
+        if(offset != 0)
+        cambiarInterfaz(1);
       }else if(index2+1==2){
         //document.querySelector( '.counter' ).innerHTML = "Secar";
         document.querySelector( '.counter' ).innerHTML = "<img src=\"img/dry.svg\" class=\"filter-blue\" width=\"50px\" height=\"50px\" id=\"lavar\"/>Secar";
+        if(offset != 0)
+        cambiarInterfaz(2);
       }
 
   }else{
@@ -382,16 +420,13 @@ function mover(activo){
 
     if(activo == 1){
         document.getElementById('inicio').style.left =  -450 + 'px';
-        cambiarLavar(activo);
+        actividad(activo);
     }
     else{
         document.getElementById('inicio').style.left =  0 + 'px';
-        cambiarLavar(activo);
+        actividad(activo);
 
     }
-      
-    
-
  
 }
 

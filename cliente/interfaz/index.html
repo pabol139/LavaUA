@@ -47,14 +47,14 @@
 
 <div class="center" id="lavarScreen">
 
-	<div class="opciones">
+	<div class="opciones" id="opciones">
 		<div class="counter"></div>
 		<button class="paginate left" onclick="prClick(0);return false;"><i></i><i></i></button>
 		<button class="paginate right" onclick="plClick(0);return false;"><i></i><i></i></button>
 	</div>
 
 
-	<div class="lavadoOpciones">
+	<div id="lavarOpciones">
 <div>
 	<p>Temperatura</p>
 	<div class="radioGroup">
@@ -101,11 +101,50 @@
 	
 	</div>
 
-	<button id="testbutton"></button>
 
-	<h4>RETARDO</h4>
+	
+	<div id="secarOpciones">
+		<div>
+			<p>Temperatura</p>
+			<div class="radioGroup">
+				<input type="radio" id="cero" name="temp" value="0">
+				<label for="cero">0ºC</label>
+				<input type="radio" id="veinte" name="temp" value="20">
+				<label for="veinte">20ºC</label>
+				<input type="radio" id="treinta" name="temp" value="30">
+				<label for="treinta">30ºC</label>
+				<input type="radio" id="cuarenta" name="temp" value="40">
+				<label for="cuarenta">40ºC</label>
+				<input type="radio" id="sesenta" name="temp" value="60">
+				<label for="sesenta">60ºC</label>
+				<input type="radio" id="noventa" name="temp" value="90">
+				<label for="noventa">90ºC</label>
+			</div>
+		</div>
+		
+		
+				<div class="container">
+					<p>Tipo</p>
+				  <i class="fa fa-arrow-up" onclick="prClick(1);return false;"></i>
+				  <div class="counter2"></div>
+				  <i class="fa fa-arrow-down" onclick="plClick(1);return false;"></i>
+				</div>
+			
+			</div>
+		
+			<div>	<button id="testbutton"></button>
+
+				<button id="retardo">Retardo</button></div>
 
 </div>
+
+
+
+
+
+
+
+
 
 
 

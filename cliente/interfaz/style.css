@@ -93,10 +93,25 @@ img{
     top: 10%;
     width: 50%;
     right: 8%;    display: block;
+
+}
+
+
+#lavarOpciones{
+
+    display: flex;
     opacity: 0;
     height: 0;
 
 }
+
+#secarOpciones{
+
+    display: none;
+
+}
+
+
 
 #hora:hover{
 
@@ -129,7 +144,7 @@ img{
     width: 50%;*/
     width: 95%;
     text-align: center;
-    padding: 200px 0;
+    padding: 200px 0 0 0;
 }
 
 .options{
@@ -261,9 +276,11 @@ img{
   color: #000;
 }*/
 
-.lavadoOpciones{
+#lavadoOpciones{
     display: flex;
 }
+
+
 
 
 
@@ -286,6 +303,7 @@ img{
     width: 85%;
     height: 74px;
     margin: auto;
+    opacity: 0;
     /* margin-bottom: 10px; */
     /* padding-top: 0em;*/
 }
