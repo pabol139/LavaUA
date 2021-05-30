@@ -1,22 +1,33 @@
 var lavadora;
-
+var textoDinamico;
 
 
 /* TRANSICION */ 
 
 
-function cambiarLavar() {
+function cambiarLavar(activo) {
     if (document.getElementById('inicio')) {
 
            // document.getElementById('inicio').style.display = 'block';
             document.getElementById('lavarScreen').style.transition = 'opacity 1.5s';
-            document.getElementById('lavarScreen').style.height = 'auto';
-            document.getElementById('lavarScreen').style.opacity = 1;
-            document.getElementById('texto').innerHTML = "Elige un tipo";
+
+            if(activo == 1){
+                document.getElementById('lavarScreen').style.height = 'auto';
+                document.getElementById('lavarScreen').style.opacity = 1;
+                textoDinamico.innerHTML = "Elige un tipo";
+                slide(0, 0);
+                slide(0, 1);
+            }
+            else{
+                console.log(textoDinamico);
+                document.getElementById('lavarScreen').style.opacity = 0;
+                textoDinamico.innerHTML = "¡Bienvenido!";
+
+            }
 
 
-        slide(0, 0);
-        slide(0, 1);
+
+     
     }
 
 }
@@ -37,12 +48,16 @@ document.addEventListener('DOMContentLoaded', conectaLavadora, false);
 
 function conectaLavadora() {
     lavadora = new Electro();
+    textoDinamico = document.getElementById('texto');
 
     lavadora.on("connect", function () {
         console.log("Ya estoy conectado con la lavadora!!!")
         console.log("Con este hay " + lavadora.clientes + " clientes conectados");
         
         inicio();
+
+        if(lavadora.presencia == true)
+        mover(1);
 
         var bloqueo = document.getElementById("lock");
             lock.addEventListener("click", function () {
@@ -51,6 +66,18 @@ function conectaLavadora() {
             lavadora.on("puertaBloqueada", function (bloqueado) {
                 bloqueo.innerHTML = bloqueado ? "<i class=\"fas fa-lock\"></i>" : "<i class=\"fas fa-lock-open\"></i>";
             });
+
+            lavadora.on("presencia", function () {
+
+                if(lavadora.presencia == true)
+                    mover(1);
+                else
+                    mover(0);
+
+            });
+
+
+         
     });
 }
 
@@ -67,6 +94,16 @@ function inicio() {
 
         else
             document.getElementById("puerta").style.filter = "invert(15%) sepia(89%) saturate(7107%) hue-rotate(3deg) brightness(95%) contrast(116%)";
+
+
+        if(lavadora.puertaBloqueada == true)
+            document.getElementById("lock").innerHTML = "<i class=\"fas fa-lock\"></i>"
+
+        else
+            document.getElementById("lock").innerHTML = "<i class=\"fas fa-lock-open\"></i>"
+
+    
+            
 
 
         });
@@ -338,13 +375,23 @@ function slide(offset, tipo) {
   pl.setAttribute( 'data-state', index === total - 1 ? 'disabled' : '' );*/
 }
 
-slide(0);
+
+function mover(activo){
 
 
-function mover(){
+    if(activo == 1){
+        document.getElementById('inicio').style.left =  -450 + 'px';
+        cambiarLavar(activo);
+    }
+    else{
+        document.getElementById('inicio').style.left =  0 + 'px';
+        cambiarLavar(activo);
 
-    document.getElementById('inicio').style.left =  -450 + 'px';
-    cambiarLavar();
+    }
+      
+    
+
+ 
 }
 
 
