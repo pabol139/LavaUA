@@ -74,8 +74,6 @@ function esconderVentanas(){
 
 
 //document.addEventListener('DOMContentLoaded', esconderVentanas, false);
-
-
 document.addEventListener('DOMContentLoaded', conectaLavadora, false);
 
 
@@ -88,6 +86,11 @@ function conectaLavadora() {
         console.log("Con este hay " + lavadora.clientes + " clientes conectados");
         
         inicio();
+
+        //Chapuza
+        document.getElementById('lavarScreen').style.opacity = 0;
+        document.getElementById('lavarOpciones').style.opacity = 0;
+        document.getElementById('opciones').style.opacity = 0;
 
         if(lavadora.presencia == true)
         mover(1);
@@ -488,10 +491,9 @@ function calculoMinutos(){
 
     }
 }
-
+/*
 $('input[type="radio"]').on('click change', function(e) {
     console.log(e.type);
 });
-
-
+*/
 
