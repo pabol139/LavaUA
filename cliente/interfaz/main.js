@@ -1,4 +1,5 @@
 var lavadora;
+var tiempo;
 var textoDinamico;
 var tempLavado;
 var centLavado;
@@ -363,10 +364,10 @@ function lavar(callback) {
 
 function reloj(){
 
-    time = lavadora.reloj;
-    horas = time.getHours();
-    minutos = time.getMinutes();
-    segundos = time.getSeconds();
+    tiempo = lavadora.reloj;
+    horas = tiempo.getHours();
+    minutos = tiempo.getMinutes();
+    segundos = tiempo.getSeconds();
 
 
 
@@ -677,6 +678,39 @@ function calculoMinutos(tipo){
     }
 }
 
+function addRetardo(retardo){
+
+    horas = tiempo.getHours();
+    minutos = tiempo.getMinutes();
+    minutoss = 0;
+    horass = 0;
+
+    if(retardo == 0){
+    
+    console.log("entro");
+    document.getElementById("timeretardo").innerHTML = " ";
+    }
+    else if(retardo >= 60){
+
+        horass = retardo/60;
+        horas += horass;
+        document.getElementById("timeretardo").innerHTML ="Inicio: " + String(horas).padStart(2, '0')+':'+String(minutos).padStart(2, '0');
+
+    }else{
+
+        minutos += retardo;
+        
+        if(minutos >= 60){
+            horas++;
+            minutos -= 60;
+        }
+        document.getElementById("timeretardo").innerHTML = "Inicio: " +String(horas).padStart(2, '0')+':'+String(minutos).padStart(2, '0');
+
+    }
+
+
+
+}
 
 function crearModal(tipo){
 
@@ -701,12 +735,12 @@ function crearModal(tipo){
         newDiv.id = "botonesRetardo";
         document.getElementById('content').appendChild(newDiv);
 
-        document.getElementById('botonesRetardo').innerHTML +=  "<button class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 15m</button>" ;
-        document.getElementById('botonesRetardo').innerHTML +=  "<button class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 30m</button>" ;
-        document.getElementById('botonesRetardo').innerHTML +=  "<button class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 45m</button>" ;
-        document.getElementById('botonesRetardo').innerHTML +=  "<button class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 1h</button>" ;
-        document.getElementById('botonesRetardo').innerHTML +=  "<button class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 2h</button>" ;
-        document.getElementById('botonesRetardo').innerHTML +=  "<button class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 3h</button>" ;
+        document.getElementById('botonesRetardo').innerHTML +=  "<button onclick=\"addRetardo(15);\" class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 15m</button>" ;
+        document.getElementById('botonesRetardo').innerHTML +=  "<button onclick=\"addRetardo(30);\" class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 30m</button>" ;
+        document.getElementById('botonesRetardo').innerHTML +=  "<button onclick=\"addRetardo(45);\" class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 45m</button>" ;
+        document.getElementById('botonesRetardo').innerHTML +=  "<button onclick=\"addRetardo(60);\" class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 1h</button>" ;
+        document.getElementById('botonesRetardo').innerHTML +=  "<button onclick=\"addRetardo(120);\" class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 2h</button>" ;
+        document.getElementById('botonesRetardo').innerHTML +=  "<button onclick=\"addRetardo(0);\" class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> Quitar</button>" ;
 
     }
     

@@ -39,8 +39,10 @@
 	</div>
 	-->	  
 	<div class="blob">
-
-		<p id="texto">¡Bienvenido!</p>
+		<div id="tiempos">
+			<p id="timeretardo"></p>
+			<p id="texto">¡Bienvenido!</p>
+		</div>
 	</div>
 
 </div>
@@ -62,7 +64,7 @@
 
 	<div id="lavarOpciones">
 <div>
-	<p> <b>Temperatura</b></p>
+	<p><i class="fas fa-thermometer-half" style="font-size: 19px;"></i> <b> Temperatura</b></p>
 	<div class="radioGroup">
 		<input type="radio" id="cero" name="temp" value="0" onchange="calculoMinutos(1);return false;">
 		<label for="cero">0ºC</label>
@@ -87,7 +89,7 @@
 		  <i class="fa fa-arrow-down" onclick="plClick(1);return false;"></i>
 		</div>
 		<div>
-			<p><b>Centrifugado</b></p>
+			<p><img src="img/spiral.svg"  width="25px" height="25px" id="spi"/><b>Centrifugado</b></p>
 			<div class="radioGroup">
 				<input type="radio" id="na" name="centri" value="0" onchange="calculoMinutos(1);return false;">
 				<label for="na">No</label>
@@ -110,7 +112,7 @@
 	
 	<div id="secarOpciones">
 		<div>
-			<p><b>Temperatura</b></p>
+			<p><i class="fas fa-thermometer-half" style="font-size: 19px;"></i><b> Temperatura</b></p>
 			<div class="radioGroup">
 				<input type="radio" id="ceroo" name="tempSec" value="0" onchange="calculoMinutos(2);return false;">
 				<label for="ceroo">0ºC</label>
