@@ -92,9 +92,7 @@ function cambiarInterfaz(tipo) {
                 document.getElementById('retardo').style.display = "none";
                 document.getElementById('detergentes').style.display = "none";
 
-            }
-     
-    
+            }     
 
 }
 
@@ -395,13 +393,23 @@ function slide(offset, tipo) {
         cambiarInterfaz(2);
       }
 
-      if(index2==0)
+      if(offset!=0){
+        calculoMinutos(tipo);
+        }
+
+      if(index2==0){
         document.querySelector( '.paginate.left').style.display ='none';
+        document.getElementById('texto').innerHTML = "Elige un tipo";
+        calculoMinutos(1);
+        }
       else
         document.querySelector( '.paginate.left').style.display ='block';
 
-      if(index2==total2-1)
+      if(index2==total2-1){
         document.querySelector( '.paginate.right').style.display ='none';
+        document.getElementById('texto').innerHTML = "Elige un tipo";
+        calculoMinutos(2);
+      }
       else
         document.querySelector( '.paginate.right').style.display ='block';
 
@@ -458,6 +466,21 @@ function slide(offset, tipo) {
         document.getElementById("noventa").checked = true;
         document.getElementById("mildo").checked = true;
       }
+
+      if(offset!=0){
+        calculoMinutos(tipo);
+        }
+
+      if(index==0)
+        document.querySelector( '.fa.fa-arrow-up').style.visibility ='hidden';
+      else
+        document.querySelector( '.fa.fa-arrow-up').style.visibility ='visible';
+
+      if(index==total-1)
+        document.querySelector( '.fa.fa-arrow-down').style.visibility ='hidden';
+      else
+        document.querySelector( '.fa.fa-arrow-down').style.visibility ='visible';
+
     }else{
 
     index3 = Math.min( Math.max( index3 + offset, 0 ), total3 - 1 );
@@ -489,22 +512,22 @@ function slide(offset, tipo) {
         document.getElementById("veintee").checked = true;
       }
 
-    }
-
-      if(index==0)
-        document.querySelector( '.fa.fa-arrow-up').style.visibility ='hidden';
-      else
-        document.querySelector( '.fa.fa-arrow-up').style.visibility ='visible';
-
-      if(index==total-1)
-        document.querySelector( '.fa.fa-arrow-down').style.visibility ='hidden';
-      else
-        document.querySelector( '.fa.fa-arrow-down').style.visibility ='visible';
-
-
       if(offset!=0){
-        calculoMinutos();
+        calculoMinutos(tipo);
         }
+
+
+      if(index3==0)
+        document.querySelector( '#riba').style.visibility ='hidden';
+      else
+        document.querySelector( '#riba').style.visibility ='visible';
+
+      if(index3==total3-1)
+        document.querySelector( '#bajo').style.visibility ='hidden';
+      else
+        document.querySelector( '#bajo').style.visibility ='visible';
+
+    }
 
 /*
   pr.setAttribute( 'data-state', index === 0 ? 'disabled' : '' );
@@ -528,41 +551,61 @@ function mover(activo){
 }
 
 
-function calculoMinutos(){
+function calculoMinutos(tipo){
     if(document.getElementById("lavarScreen")){
         console.log("fff");
         minuts = 0;
 
-        if(document.getElementById("cero").checked == true){
-            minuts+=0;
-        }else if(document.getElementById("veinte").checked == true){
-            minuts+=30;
-        }else if(document.getElementById("treinta").checked == true){
-            minuts+=25;
-        }else if(document.getElementById("cuarenta").checked == true){
-            minuts+=20;
-        }else if(document.getElementById("sesenta").checked == true){
-            minuts+=15;
-        }else if(document.getElementById("noventa").checked == true){
-            minuts+=10;
+        if(tipo==1){
+            console.log("tipo 1 o 0");
+            if(document.getElementById("cero").checked == true){
+                minuts+=5;
+            }else if(document.getElementById("veinte").checked == true){
+                minuts+=30;
+            }else if(document.getElementById("treinta").checked == true){
+                minuts+=25;
+            }else if(document.getElementById("cuarenta").checked == true){
+                minuts+=20;
+            }else if(document.getElementById("sesenta").checked == true){
+                minuts+=15;
+            }else if(document.getElementById("noventa").checked == true){
+                minuts+=10;
+            }
+
+            if(document.getElementById("na").checked == true){
+                minuts+=0;
+            }else if(document.getElementById("cua").checked == true){
+                minuts+=10;
+            }else if(document.getElementById("och").checked == true){
+                minuts+=20;
+            }else if(document.getElementById("mil").checked == true){
+                minuts+=10;
+            }else if(document.getElementById("mildo").checked == true){
+                minuts+=5;
+            }else if(document.getElementById("milci").checked == true){
+                minuts+=15;
+            }
+        }else{
+            if(document.getElementById("ceroo").checked == true){
+                minuts+=5;
+            }else if(document.getElementById("veintee").checked == true){
+                minuts+=50;
+            }else if(document.getElementById("treintaa").checked == true){
+                minuts+=40;
+            }else if(document.getElementById("cuarentaa").checked == true){
+                minuts+=30;
+            }else if(document.getElementById("sesentaa").checked == true){
+                minuts+=20;
+            }else if(document.getElementById("noventaa").checked == true){
+                minuts+=10;
+            }
         }
 
-        if(document.getElementById("na").checked == true){
-            minuts+=0;
-        }else if(document.getElementById("cua").checked == true){
-            minuts+=10;
-        }else if(document.getElementById("och").checked == true){
-            minuts+=20;
-        }else if(document.getElementById("mil").checked == true){
-            minuts+=10;
-        }else if(document.getElementById("mildo").checked == true){
-            minuts+=5;
-        }else if(document.getElementById("milci").checked == true){
-            minuts+=15;
+        if(minuts!=0){
+            console.log("changeee");
+            textoDinamico = minuts + ":00";
+            document.getElementById('texto').innerHTML = textoDinamico;
         }
-
-        textoDinamico = minuts + ":00";
-        document.getElementById('texto').innerHTML = textoDinamico;
 
     }
 }
