@@ -350,6 +350,16 @@ function slide(offset, tipo) {
         cambiarInterfaz(2);
       }
 
+      if(index2==0)
+        document.querySelector( '.paginate.left').style.display ='none';
+      else
+        document.querySelector( '.paginate.left').style.display ='block';
+
+      if(index2==total2-1)
+        document.querySelector( '.paginate.right').style.display ='none';
+      else
+        document.querySelector( '.paginate.right').style.display ='block';
+
   }else{
 
     if(index+1==1){
@@ -400,6 +410,16 @@ function slide(offset, tipo) {
         document.getElementById("noventa").checked = true;
         document.getElementById("mildo").checked = true;
       } 
+
+      if(index==0)
+        document.querySelector( '.fa.fa-arrow-up').style.visibility ='hidden';
+      else
+        document.querySelector( '.fa.fa-arrow-up').style.visibility ='visible';
+
+      if(index==total-1)
+        document.querySelector( '.fa.fa-arrow-down').style.visibility ='hidden';
+      else
+        document.querySelector( '.fa.fa-arrow-down').style.visibility ='visible';
 
 
       if(offset!=0){
