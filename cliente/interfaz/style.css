@@ -347,6 +347,57 @@ img{
 
 }
 
+
+/*DETERGENTE Y SUAVIZANTE*/
+#det{
+
+  top: 0.3em;
+  right: 2em;
+    position: absolute;
+    color: white;
+    text-align: center;
+}
+
+#sua{
+
+    top: 2.8em;
+    right: 2em;
+    position: absolute;
+    color: white;
+    text-align: center;
+    position: absolute;
+
+}
+
+#detergentes p{
+
+  margin-top: 15px;
+  margin-right: 55px;
+  font-size: 13px;
+}
+
+#detergentes p>b{
+
+  right: -1em;
+  /* margin-left: 9px; */
+  /* padding-left: 10px; */
+  position: absolute;
+}
+
+#bottom-botones{
+
+
+  opacity: 0;
+
+}
+
+#detergentes{
+
+  position: absolute;
+  top: 11.5em;
+  right: 5em;
+}
+
 #retardo:hover{
 
   cursor: pointer;

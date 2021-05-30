@@ -7,15 +7,13 @@ var textoDinamico;
 
 function actividad(activo) {
 
-
-
-
-
     if (document.getElementById('inicio')) {
 
             document.getElementById('lavarScreen').style.transition = 'opacity 1.5s';
             document.getElementById('lavarOpciones').style.transition = 'opacity 1.5s';
             document.getElementById('opciones').style.transition = 'opacity 1.5s';
+            document.getElementById('bottom-botones').style.transition = 'opacity 1.5s';
+
 
             if(activo == 1){
 
@@ -34,6 +32,7 @@ function actividad(activo) {
                 document.getElementById('lavarOpciones').style.height = 'auto';
                 document.getElementById('lavarOpciones').style.opacity = 1;
                 document.getElementById('opciones').style.opacity = 1;
+                document.getElementById('bottom-botones').style.opacity = 1;
 
                 console.log();
 
@@ -80,6 +79,7 @@ function cambiarInterfaz(tipo) {
              document.getElementById('secarOpciones').style.display = "none";
              document.getElementById('lavarOpciones').style.display = "flex";
              document.getElementById('retardo').style.display = "inline-block";
+             document.getElementById('detergentes').style.display = "block";
 
 
 
@@ -90,7 +90,7 @@ function cambiarInterfaz(tipo) {
                 document.getElementById('lavarOpciones').style.display = "none";
                 document.getElementById('secarOpciones').style.display = "flex";
                 document.getElementById('retardo').style.display = "none";
-
+                document.getElementById('detergentes').style.display = "none";
 
             }
      
@@ -120,13 +120,13 @@ function conectaLavadora() {
         
         inicio();
 
-        //Chapuza
-        document.getElementById('lavarScreen').style.opacity = 0;
-        document.getElementById('lavarOpciones').style.opacity = 0;
-        document.getElementById('opciones').style.opacity = 0;
-
         if(lavadora.presencia == true)
         mover(1);
+
+        document.getElementById('detpor').innerHTML = lavadora.nivelDetergente + "%";
+        document.getElementById('suapor').innerHTML = lavadora.nivelSuavizante + "%";
+
+
 
         var bloqueo = document.getElementById("lock");
             lock.addEventListener("click", function () {
@@ -134,6 +134,16 @@ function conectaLavadora() {
             });
             lavadora.on("puertaBloqueada", function (bloqueado) {
                 bloqueo.innerHTML = bloqueado ? "<i class=\"fas fa-lock\"></i>" : "<i class=\"fas fa-lock-open\"></i>";
+            });
+
+            lavadora.on("nivelDetergente", function () {
+
+                document.getElementById('detpor').innerHTML = lavadora.nivelDetergente + "%";
+            });
+            lavadora.on("nivelSuavizante", function () {
+
+                document.getElementById('suapor').innerHTML = lavadora.nivelSuavizante + "%";
+
             });
 
             lavadora.on("presencia", function () {
