@@ -6,6 +6,11 @@ var textoDinamico;
 
 
 function actividad(activo) {
+
+
+
+
+
     if (document.getElementById('inicio')) {
 
             document.getElementById('lavarScreen').style.transition = 'opacity 1.5s';
@@ -14,6 +19,17 @@ function actividad(activo) {
 
             if(activo == 1){
 
+                    /* CAMBIAR COLOR DE LA BOLA */
+                var animation = document.styleSheets[0].cssRules[3];
+                document.getElementsByClassName('blob')[0].style.border = "5px solid #00FF00";
+                animation.deleteRule('0%');
+                animation.deleteRule('70%');
+                animation.deleteRule('100%');
+                animation.appendRule('	0% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }');
+                animation.appendRule('	70% {transform: scale(1);box-shadow: 0 0 0 35px rgba(0, 255, 0, 0); }');
+                animation.appendRule('	100% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }');
+
+                /* ENSEÑAR LA INTERFAZ */
                 document.getElementById('lavarScreen').style.opacity = 1;
                 document.getElementById('lavarOpciones').style.height = 'auto';
                 document.getElementById('lavarOpciones').style.opacity = 1;
@@ -30,6 +46,17 @@ function actividad(activo) {
                 slide(0, 1);
             }
             else {
+
+                /* CAMBIAR COLOR DE LA BOLA */
+                var animation = document.styleSheets[0].cssRules[3];
+                document.getElementsByClassName('blob')[0].style.border = "5px solid aqua";
+                animation.deleteRule('0%');
+                animation.deleteRule('70%');
+                animation.deleteRule('100%');
+                animation.appendRule('	0% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7); }');
+                animation.appendRule('	70% {transform: scale(1);box-shadow: 0 0 0 35px rgba(0, 255, 255, 0); }');
+                animation.appendRule('	100% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); }');
+
                 document.getElementById('lavarScreen').style.opacity = 0;
                 document.getElementById('lavarOpciones').style.opacity = 0;
                 document.getElementById('opciones').style.opacity = 0;
