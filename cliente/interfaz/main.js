@@ -360,6 +360,7 @@ function plClick(tipo){
 
 var index = 0, total = 8;
 var index2 = 0, total2 = 2;
+var index3 = 0, total3 = 5;
 var minuts = 0;
 
 function slide(offset, tipo) {
@@ -393,7 +394,7 @@ function slide(offset, tipo) {
       else
         document.querySelector( '.paginate.right').style.display ='block';
 
-  }else{
+  }else if(tipo==1){
 
     index = Math.min( Math.max( index + offset, 0 ), total - 1 );
 
@@ -445,7 +446,39 @@ function slide(offset, tipo) {
         document.querySelector( '.counter2' ).innerHTML = "Rapido 15 min";
         document.getElementById("noventa").checked = true;
         document.getElementById("mildo").checked = true;
-      } 
+      }
+    }else{
+
+    index3 = Math.min( Math.max( index3 + offset, 0 ), total3 - 1 );
+
+
+    if(index3+1==1){
+        document.querySelector( '.counter3' ).innerHTML = "Tipo Secado";
+        document.getElementById("ceroo").checked = false;
+        document.getElementById("veintee").checked = false;
+        document.getElementById("treintaa").checked = false;
+        document.getElementById("cuarentaa").checked = false;
+        document.getElementById("sesentaa").checked = false;
+        document.getElementById("noventaa").checked = false;
+
+        document.getElementById('texto').innerHTML = "Elige un tipo";
+        offset=0;
+        minuts=0;
+      }else if(index3+1==2){
+        document.querySelector( '.counter3' ).innerHTML = "Normal";
+        document.getElementById("veinte").checked = true;
+      }else if(index3+1==3){
+        document.querySelector( '.counter3' ).innerHTML = "Algodon";
+        document.getElementById("treinta").checked = true;
+      }else if(index3+1==4){
+        document.querySelector( '.counter3' ).innerHTML = "Delicado";
+        document.getElementById("veinte").checked = true;
+      }else if(index3+1==5){
+        document.querySelector( '.counter3' ).innerHTML = "Extra Delicado";
+        document.getElementById("veintee").checked = true;
+      }
+
+    }
 
       if(index==0)
         document.querySelector( '.fa.fa-arrow-up').style.visibility ='hidden';
