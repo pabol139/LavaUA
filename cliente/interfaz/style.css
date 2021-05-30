@@ -524,7 +524,7 @@ img{
     transform: translate(-5px, 0) rotate(0deg);
   }
   .paginate.right {
-    left: 62%;
+    left: 60%;
     position: absolute;
     top: 16em;
   }
