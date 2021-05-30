@@ -19,17 +19,22 @@ function actividad(activo) {
                 document.getElementById('lavarOpciones').style.opacity = 1;
                 document.getElementById('opciones').style.opacity = 1;
 
-                textoDinamico.innerHTML = "Elige un tipo";
+                console.log(textoDinamico);
+
+                if(textoDinamico == "Elige un tipo")
+                    document.getElementById('texto').innerHTML = "Elige un tipo";
+                else
+                    document.getElementById('texto').innerHTML = textoDinamico;
+
                 slide(0, 0);
                 slide(0, 1);
             }
             else {
-                console.log(textoDinamico);
                 document.getElementById('lavarScreen').style.opacity = 0;
                 document.getElementById('lavarOpciones').style.opacity = 0;
                 document.getElementById('opciones').style.opacity = 0;
 
-                textoDinamico.innerHTML = "¡Bienvenido!";
+                document.getElementById('texto').innerHTML = "¡Bienvenido!";
 
             }
      
@@ -79,7 +84,7 @@ document.addEventListener('DOMContentLoaded', conectaLavadora, false);
 
 function conectaLavadora() {
     lavadora = new Electro();
-    textoDinamico = document.getElementById('texto');
+    textoDinamico = "";
 
     lavadora.on("connect", function () {
         console.log("Ya estoy conectado con la lavadora!!!")
@@ -331,14 +336,12 @@ var index2 = 0, total2 = 2;
 var minuts = 0;
 
 function slide(offset, tipo) {
-        console.log("entraaaaa");
-
-  index = Math.min( Math.max( index + offset, 0 ), total - 1 );
-  index2 = Math.min( Math.max( index2 + offset, 0 ), total2 - 1 );
-
 
 
   if(tipo == 0){
+
+    index2 = Math.min( Math.max( index2 + offset, 0 ), total2 - 1 );
+
 
     if(index2+1==1){
         //document.querySelector( '.counter' ).innerHTML = "Lavar";
@@ -364,6 +367,9 @@ function slide(offset, tipo) {
         document.querySelector( '.paginate.right').style.display ='block';
 
   }else{
+
+    index = Math.min( Math.max( index + offset, 0 ), total - 1 );
+
 
     if(index+1==1){
         document.querySelector( '.counter2' ).innerHTML = "Tipo Lavado";
@@ -487,7 +493,8 @@ function calculoMinutos(){
             minuts+=15;
         }
 
-        document.getElementById('texto').innerHTML = minuts + ":00";
+        textoDinamico = minuts + ":00";
+        document.getElementById('texto').innerHTML = textoDinamico;
 
     }
 }
