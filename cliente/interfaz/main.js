@@ -131,6 +131,7 @@ function conectaLavadora() {
         if(lavadora.presencia == true)
         mover(1);
 
+        document.getElementById('pesopor').innerHTML = lavadora.peso/1000 + "kg";
         document.getElementById('detpor').innerHTML = lavadora.nivelDetergente + "%";
         document.getElementById('suapor').innerHTML = lavadora.nivelSuavizante + "%";
 
@@ -151,6 +152,11 @@ function conectaLavadora() {
             lavadora.on("nivelSuavizante", function () {
 
                 document.getElementById('suapor').innerHTML = lavadora.nivelSuavizante + "%";
+
+            });
+            lavadora.on("peso", function () {
+
+                document.getElementById('pesopor').innerHTML = lavadora.peso/1000 + "kg";
 
             });
 

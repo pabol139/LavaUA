@@ -419,7 +419,33 @@ img{
 
 
 
-/*DETERGENTE Y SUAVIZANTE*/
+/*DETERGENTE Y SUAVIZANTE Y PESO*/
+
+#peso{
+
+  position: absolute;
+  margin-left: 5em;
+
+
+}
+#peso b{
+
+  position: absolute;
+  left: 5em;
+
+
+}
+
+#pesoo{
+
+  position: absolute;
+  color: white;
+  text-align: center;
+  left: 3em;
+  top: -0.4em;
+  
+}
+
 #det{
 
   top: 0.3em;
@@ -439,6 +465,8 @@ img{
     position: absolute;
 
 }
+
+
 
 #detergentes p{
 
