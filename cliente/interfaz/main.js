@@ -325,6 +325,8 @@ function reloj(){
     minutos = time.getMinutes();
     segundos = time.getSeconds();
 
+
+
     document.getElementById("hora").innerHTML = String(horas).padStart(2, '0')+':'+String(minutos).padStart(2, '0');
 }
 /*
@@ -609,8 +611,38 @@ function calculoMinutos(tipo){
 
     }
 }
-/*
-$('input[type="radio"]').on('click change', function(e) {
-    console.log(e.type);
-});
-*/
+
+
+function crearModal(tipo){
+
+    var modal = document.getElementById('open-modal');
+    var content = document.getElementById('content');
+
+    console.log(content);
+    if(content)
+        content.parentNode.removeChild(content);
+
+    var newDiv = document.createElement("div");
+    newDiv.id = "content";
+    modal.appendChild(newDiv);
+    document.getElementById('content').innerHTML +=  "<a href=\"#\" title=\"Cerrar\" class=\"modal-close\">Cerrar</a>" ;
+
+    /*RETARDO*/
+
+    if(tipo == 1){
+        document.getElementById('content').innerHTML +=  "<h1>Retardo</h1>" ;
+        document.getElementById('content').innerHTML +=  "<div>Añade el tiempo de retardo que quieras</div>" ;
+        var newDiv = document.createElement("div");
+        newDiv.id = "botonesRetardo";
+        document.getElementById('content').appendChild(newDiv);
+
+        document.getElementById('botonesRetardo').innerHTML +=  "<button class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 15m</button>" ;
+        document.getElementById('botonesRetardo').innerHTML +=  "<button class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 30m</button>" ;
+        document.getElementById('botonesRetardo').innerHTML +=  "<button class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 45m</button>" ;
+        document.getElementById('botonesRetardo').innerHTML +=  "<button class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 1h</button>" ;
+        document.getElementById('botonesRetardo').innerHTML +=  "<button class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 2h</button>" ;
+        document.getElementById('botonesRetardo').innerHTML +=  "<button class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> 3h</button>" ;
+
+    }
+    
+}

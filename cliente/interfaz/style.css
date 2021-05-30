@@ -334,18 +334,59 @@ img{
     color: #007fff;
     -webkit-filter: drop-shadow(0 2px 0px rgba(0, 127, 255, 0.2));  }
 
+#botonesRetardo{
+
+  display: grid;
+  grid-template-columns: repeat(2,150px);
+  grid-gap:10px 10px; /* 50 pixels of space added between rows and 30 pixels added between columns  */
+  justify-content: center;
+}
+
+
+
+.botones{
+  font-size: 18px;
+  border: 4px solid rgb(6, 120, 250);
+  border-radius: 10px;
+  width: 150px;
+  height: 50px;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  transition: .2s ease-in-out;
+}
+
+.botones:hover{
+
+  cursor: pointer;
+  border: 4px solid rgb(6, 120, 250);
+  background-color: rgb(6, 120, 250);
+  color: white;
+}
+
+.green{
+  border: 4px solid rgb(0, 206, 106);
+  font-weight: 500;
+}
+
+.green:hover{
+
+  cursor: pointer;
+  border: 4px solid rgb(0, 206, 106);
+  background-color: rgb(0, 206, 106);
+  color: white;
+
+
+}
+    
+
 #retardo{
 
     position: absolute;
-    font-size: 18px;
-    border: 4px solid rgb(6, 120, 250);
-    border-radius: 10px;
-    width: 150px;
-    height: 50px;
     right: 0em;
-    transition: .2s ease-in-out;
 
 }
+
 
 
 /*DETERGENTE Y SUAVIZANTE*/
@@ -398,13 +439,7 @@ img{
   right: 5em;
 }
 
-#retardo:hover{
 
-  cursor: pointer;
-  border: 4px solid rgb(6, 120, 250);
-  background-color: rgb(6, 120, 250);
-  color: white;
-}
 
   
 
@@ -554,54 +589,73 @@ img{
   cursor: pointer;
 }
 
-/* BOTON EMPEZAR */
-#testbutton {
-  width: 150px;
-  height:50px;
-  border-radius:180px;
-  position:relative;
-  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
-  cursor:pointer;
-  line-height:12px;
+  
+/*MODAL*/
+
+.modal-window {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+.modal-window:target {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-window > div {
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2em;
+  background: white;
+}
+.modal-window header {
+  font-weight: bold;
+}
+.modal-window h1 {
+  font-size: 150%;
+  margin: 0 0 15px;
+}
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+}
+.modal-close:hover {
+  color: black;
 }
 
-#testbutton:before {
-  content:'';
-  z-index:1;
-  position:absolute;
-  display:block;
-  width:80%;
-  height:70%;
-  top:15%;
-  left:10%;
-  transition: 0.3s opacity ease-in-out;
-  filter:blur(15px);
-  opacity:0;
-  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+.modal-window > div {
+  border-radius: 1rem;
 }
-
-#testbutton:hover:before {
-  opacity:1;
-  transition: 0.3s opacity ease-in-out;
-  filter:blur(25px);
-  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);  
+.modal-window div:not(:last-of-type) {
+  margin-bottom: 15px;
 }
-
-#testbutton:after {
-  content:'Empezar';
-  text-align:center;
-  line-height:40px;
-  font-size:18px;
-  color:rgba(235,235,235,1);
-  font-weight:bold;
-  z-index:5;
-  position:absolute;
-  display:block;
-  border-radius:180px;
-  width:92%;
-  height:80%;
-  top:10%;
-  left:4%;  
-  background-color:rgb(19, 20, 22);
+small {
+  color: lightgray;
 }
-    
+.btn {
+  background-color: white;
+  padding: 1em 1.5em;
+  border-radius: 1rem;
+  text-decoration: none;
+}
+.btn i {
+  padding-right: 0.3em;
+}
