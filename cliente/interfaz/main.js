@@ -467,13 +467,13 @@ function slide(offset, tipo) {
         minuts=0;
       }else if(index3+1==2){
         document.querySelector( '.counter3' ).innerHTML = "Normal";
-        document.getElementById("veinte").checked = true;
+        document.getElementById("sesentaa").checked = true;
       }else if(index3+1==3){
         document.querySelector( '.counter3' ).innerHTML = "Algodon";
-        document.getElementById("treinta").checked = true;
+        document.getElementById("cuarentaa").checked = true;
       }else if(index3+1==4){
         document.querySelector( '.counter3' ).innerHTML = "Delicado";
-        document.getElementById("veinte").checked = true;
+        document.getElementById("treintaa").checked = true;
       }else if(index3+1==5){
         document.querySelector( '.counter3' ).innerHTML = "Extra Delicado";
         document.getElementById("veintee").checked = true;
