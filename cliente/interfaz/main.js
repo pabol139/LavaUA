@@ -503,4 +503,3 @@ $('input[type="radio"]').on('click change', function(e) {
     console.log(e.type);
 });
 */
-
