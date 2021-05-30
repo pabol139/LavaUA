@@ -19,7 +19,7 @@ function actividad(activo) {
                 document.getElementById('lavarOpciones').style.opacity = 1;
                 document.getElementById('opciones').style.opacity = 1;
 
-                console.log(textoDinamico);
+                console.log();
 
                 if(textoDinamico == "Elige un tipo")
                     document.getElementById('texto').innerHTML = "Elige un tipo";
