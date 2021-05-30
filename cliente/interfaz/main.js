@@ -183,7 +183,7 @@ function conectaLavadora() {
                 if(lavadora.presencia == true)
                     mover(1);
                 else
-                    mover(0);
+                    mover(2);
 
             });
 
