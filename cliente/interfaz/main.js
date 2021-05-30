@@ -282,6 +282,35 @@ function termostato(sensor, resistencia, temp, duracion, callback) {
     }, duracion);
 }
 
+var cuentaAtras=0;
+var firstCuenta=true;
+
+function decrementarTiempo(t){
+
+    ent = (minuts/5)*5;
+    ent = ent + t;
+
+    if(firstCuenta){
+        cuentaAtras = minuts;
+        firstCuenta = false;
+    }
+    
+    cuentaAtras = cuentaAtras-(minuts/ent);
+    //console.log("hhh");
+    if(cuentaAtras<=0){
+        minuts=0;
+        cuentaAtras=0;
+        firstCuenta = true;
+        document.getElementById('timeretardo').innerHTML = "00:00 (100%)";
+        console.log("terminao");
+    }else{
+        console.log("minuto: "+(cuentaAtras));
+        stringCuenta= cuentaAtras.toString().split(".");
+        document.getElementById('timeretardo').innerHTML = stringCuenta[0]+":"+stringCuenta[1].substring(0, 2)+" ("+Math.trunc(100-((cuentaAtras*100)/minuts))+"%)"; 
+    }
+
+}
+
 
 
 // Realiza un lavado
@@ -353,6 +382,8 @@ function lavar(callback) {
     console.log("Iniciar lavado");
     lavadora.puertaBloqueada = true; // Bloquear puerta durante el lavado
     console.log("Puerta bloqueada");
+    tiempoSinLavarCentrifugar = detergente + suavizante + 2*(lavadora.peso/100) - 3*(lavadora.peso/1000);
+    setInterval(function(){ decrementarTiempo(tiempoSinLavarCentrifugar); },1000);
     // Llenar de agua el tambor (para lavado)
     console.log("Llenar de agua (para lavado)...")
     llenar("nivelAgua", "tomaAgua", nivelAgua, function () {
