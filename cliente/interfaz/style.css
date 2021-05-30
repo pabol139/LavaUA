@@ -413,7 +413,7 @@ img{
 #retardo{
 
     position: absolute;
-    right: 0em;
+    margin-left: 7.2em;
 
 }
 
@@ -459,6 +459,7 @@ img{
 
 
   opacity: 0;
+  margin-top: 2em;
 
 }
 
