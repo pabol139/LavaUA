@@ -258,7 +258,7 @@ img{
     padding: 30px;
     display: block;
     font-size: 50px;
-    transition: all 0.4s ease;
+    /*transition: all 0.4s ease;*/
 }
 
 .container i:hover {
