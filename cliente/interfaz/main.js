@@ -102,7 +102,25 @@ function cambiarInterfaz(tipo) {
                 document.getElementById('retardo').style.display = "none";
                 document.getElementById('detergentes').style.display = "none";
 
-            }     
+            }
+            else if(tipo == 3){
+
+                document.getElementById('lavarScreen').style.opacity = 0;
+
+                mover(3);
+
+                var animation = document.styleSheets[0].cssRules[3];
+                document.getElementsByClassName('blob')[0].style.border = "5px solid #ffa500";
+                animation.deleteRule('0%');
+                animation.deleteRule('70%');
+                animation.deleteRule('100%');
+                animation.appendRule('	0% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(255, 165, 0, 0.7); }');
+                animation.appendRule('	70% {transform: scale(1);box-shadow: 0 0 0 35px rgba(255, 165, 0, 0); }');
+                animation.appendRule('	100% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(255, 165, 0, 0); }');
+
+                document.getElementById('texto').innerHTML = "En proceso...";
+
+            }    
 
 }
 
@@ -329,6 +347,8 @@ function lavar(callback) {
         //callback();
         return;
     }
+
+    cambiarInterfaz(3);
 
     console.log("Iniciar lavado");
     lavadora.puertaBloqueada = true; // Bloquear puerta durante el lavado
@@ -599,9 +619,21 @@ function mover(activo){
         document.getElementById('inicio').style.left =  -450 + 'px';
         actividad(activo);
     }
-    else{
+    else if(activo == 2){
         document.getElementById('inicio').style.left =  0 + 'px';
         actividad(activo);
+
+    }
+    else if(activo == 3){
+
+        document.getElementById("inicio").style.transition = "transform 2s"; 
+        document.getElementById("inicio").style.transform = "translate(475px,-150px)";
+        document.getElementById("blob").style.transition = "1.5s ease-in";
+        document.getElementById("blob").style.width = "250px";
+        document.getElementById("blob").style.height = "250px";
+        document.getElementById('texto').style.transition = "1.5s ease-in";
+        document.getElementById('texto').style.fontSize = "25px";
+ 
 
     }
  
