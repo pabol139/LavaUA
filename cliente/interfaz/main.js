@@ -1,5 +1,14 @@
 var lavadora;
 var textoDinamico;
+var tempLavado;
+var centLavado;
+var tempSecado;
+var minuts = 0;
+var minutsLavado = 0;
+var minutsCentrifugado = 0;
+var minutsSecado = 0;
+
+
 
 
 /* TRANSICION */ 
@@ -251,18 +260,19 @@ function termostato(sensor, resistencia, temp, duracion, callback) {
 function lavar(callback) {
     // Obtener parámetros del lavado
     var
-        detergente = document.getElementById("detergente").value,
-        suavizante = document.getElementById("suavizante").value,
-        nivelAgua = document.getElementById("nivelAgua").value,
-        temperaturaLavado = document.getElementById("temperaturaLavado").value,
-        revolucionesLavado = document.getElementById("revolucionesLavado").value,
-        tiempoLavado = document.getElementById("tiempoLavado").value * 1000,
-        revolucionesCentrifugado = document.getElementById("revolucionesCentrifugado").value,
-        tiempoCentrifugado = document.getElementById("tiempoCentrifugado").value * 1000;
+        detergente = lavadora.peso/100,
+        suavizante = detergente/2,
+        nivelAgua = ((lavadora.peso*100)/500)+5,
+        temperaturaLavado = tempLavado,
+        revolucionesLavado = centLavado,
+        tiempoLavado = minutsLavado * 1000,
+        revolucionesCentrifugado = centLavado,
+        tiempoCentrifugado = minutsCentrifugado * 1000;
 
     // Puerta abierta
     if (lavadora.puertaAbierta) {
         alert("Puerta abierta!!!!");
+        //MODAL DE CIERRA LA PUERTA CALVO
         callback();
         return;
     }
@@ -270,6 +280,39 @@ function lavar(callback) {
     // Hay ropa?
     if (!lavadora.peso) {
         alert("Parece que no hay ropa en la lavadora.");
+        //MODAL DE PON ROPA FETIDO
+        callback();
+        return;
+    }
+
+    // Lavadora hasta arriba?
+    if (lavadora.peso>4000) {
+        alert("Parece que hay demsiada ropa en la lavadora.");
+        //MODAL DE QUITA ROPA FETIDO
+        callback();
+        return;
+    }
+
+    // Filtro obstruido
+    if (lavadora.filtroObstruido) {
+        alert("Parece que el filtro esta pocho.");
+        //MODAL DE FILTRO POCHO CERDO
+        callback();
+        return;
+    }
+
+    // Insuficiente detergente
+    if (lavadora.nivelDetergente<detergente) {
+        alert("Parece que necesitas más detergente.");
+        //MODAL DE PONLE DETERGENTE GUARRO
+        callback();
+        return;
+    }
+
+    // Insuficiente suavizante
+    if (lavadora.nivelSuavizante<suavizante) {
+        alert("Parece que necesitas más suavizante.");
+        //MODAL DE PONLE SUAVIZANTE GUARRO
         callback();
         return;
     }
@@ -372,7 +415,6 @@ function plClick(tipo){
 var index = 0, total = 8;
 var index2 = 0, total2 = 2;
 var index3 = 0, total3 = 5;
-var minuts = 0;
 
 function slide(offset, tipo) {
 
@@ -557,51 +599,74 @@ function calculoMinutos(tipo){
     if(document.getElementById("lavarScreen")){
         console.log("fff");
         minuts = 0;
+        minutsLavado = 0;
+        minutsCentrifugado = 0;
+        minutsSecado = 0;
 
         if(tipo==1){
             console.log("tipo 1 o 0");
             if(document.getElementById("cero").checked == true){
-                minuts+=5;
+                minutsLavado+=5;
+                tempLavado=0;
             }else if(document.getElementById("veinte").checked == true){
-                minuts+=30;
+                minutsLavado+=30;
+                tempLavado=20;
             }else if(document.getElementById("treinta").checked == true){
-                minuts+=25;
+                minutsLavado+=25;
+                tempLavado=30;
             }else if(document.getElementById("cuarenta").checked == true){
-                minuts+=20;
+                minutsLavado+=20;
+                tempLavado=40;
             }else if(document.getElementById("sesenta").checked == true){
-                minuts+=15;
+                minutsLavado+=15;
+                tempLavado=60;
             }else if(document.getElementById("noventa").checked == true){
-                minuts+=10;
+                minutsLavado+=10;
+                tempLavado=90;
             }
 
             if(document.getElementById("na").checked == true){
-                minuts+=0;
+                minutsCentrifugado+=0;
+                centLavado=0;
             }else if(document.getElementById("cua").checked == true){
-                minuts+=10;
+                minutsCentrifugado+=10;
+                centLavado=400;
             }else if(document.getElementById("och").checked == true){
-                minuts+=20;
+                minutsCentrifugado+=20;
+                centLavado=800;
             }else if(document.getElementById("mil").checked == true){
-                minuts+=10;
+                minutsCentrifugado+=10;
+                centLavado=1000;
             }else if(document.getElementById("mildo").checked == true){
-                minuts+=5;
+                minutsCentrifugado+=5;
+                centLavado=1200;
             }else if(document.getElementById("milci").checked == true){
-                minuts+=15;
+                minutsCentrifugado+=15;
+                centLavado=1500;
             }
         }else{
             if(document.getElementById("ceroo").checked == true){
-                minuts+=5;
+                minutsSecado+=5;
+                tempSecado=0;
             }else if(document.getElementById("veintee").checked == true){
-                minuts+=50;
+                minutsSecado+=50;
+                tempSecado=20;
             }else if(document.getElementById("treintaa").checked == true){
-                minuts+=40;
+                minutsSecado+=40;
+                tempSecado=30;
             }else if(document.getElementById("cuarentaa").checked == true){
-                minuts+=30;
+                minutsSecado+=30;
+                tempSecado=40;
             }else if(document.getElementById("sesentaa").checked == true){
-                minuts+=20;
+                minutsSecado+=20;
+                tempSecado=60;
             }else if(document.getElementById("noventaa").checked == true){
-                minuts+=10;
+                minutsSecado+=10;
+                tempSecado=90;
             }
         }
+
+        minuts = minutsLavado + minutsCentrifugado + minutsSecado;
 
         if(minuts!=0){
             console.log("changeee");
