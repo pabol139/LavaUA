@@ -882,6 +882,29 @@ width: 550px;
 
 }
 
+#param p{
+
+  display: flex;
+
+}
+#param span{
+
+  margin-right: 10px;
+
+}
+
+#info span{
+
+  margin-left: 10px;
+
+}
+
+#info p{
+  justify-content: flex-end;
+  display: flex;
+
+}
+
 #param{
 
   top: -23em;
