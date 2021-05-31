@@ -793,3 +793,44 @@ small {
   left: -36px;
   top: -4em;
 }
+
+
+/*datos del lavado*/
+
+#param,#info{
+
+
+  font-size: 20px;
+  position: relative;
+
+}
+
+#param{
+
+  top: -23em;
+  left: 8em;
+}
+
+#param b{
+
+  margin-left: 10px;
+}
+
+#info{
+
+  text-align: end;
+  top: -33em;
+  left: -10em;
+}
+
+#info b{
+
+  margin-right: 10px;
+
+}
+
+#vistas-lavado{
+
+
+  display: none;
+}

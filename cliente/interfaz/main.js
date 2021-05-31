@@ -13,6 +13,9 @@ var interfazActual =  "lavadoSecado";
 var index = 0, total = 8;
 var index2 = 0, total2 = 2;
 var index3 = 0, total3 = 5;
+var consumo;
+var tempActual;
+var humedad;
 
 
 
@@ -25,8 +28,10 @@ function reinicio(){
     index2 = 0;
     index3 = 0;
     mover(1);
+    optBar(2); // Reinicio barra
     document.getElementById('timeretardo').innerHTML = "";
     document.getElementById('conteneor').style.display = "none";
+    document.getElementById('vistas-lavado').style.display = "none";
     document.getElementById('volverInicioButton').style.display = "none";
     document.getElementById("blob").style.width = "350px";
     document.getElementById("blob").style.height = "350px";
@@ -78,6 +83,7 @@ function actividad(activo) {
                
                 animation.appendRule('	100% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); }');
                 document.getElementById('conteneor').style.display = "none";
+                document.getElementById('vistas-lavado').style.display = "none";
                 document.getElementById('lavarScreen').style.opacity = 0;
                 document.getElementById('lavarOpciones').style.opacity = 0;
                 document.getElementById('opciones').style.opacity = 0;
@@ -128,6 +134,8 @@ if(tipo == 1){
 
     //document.getElementById('conteneor').style.opacity = 0;
     document.getElementById('conteneor').style.display = "none";
+    document.getElementById('vistas-lavado').style.display = "none";
+
 
 
     console.log();
@@ -158,7 +166,6 @@ else if(tipo == 2){
 
     document.getElementById('texto').innerHTML = "En proceso...";
     //document.getElementById('conteneor').style.opacity = 1;
-    document.getElementById('conteneor').style.display = "block";
 
     document.getElementById('lavarScreen').style.visibility = "hidden";
     document.getElementById('lavarOpciones').style.visibility = "hidden";
@@ -174,6 +181,7 @@ else if(tipo == 2){
     document.getElementById('bottom-botones').style.opacity = 0;
     //document.getElementById('conteneor').style.opacity = 1;
     document.getElementById('conteneor').style.display = "block";
+    document.getElementById('vistas-lavado').style.display = "block";
 
 }
     
@@ -194,6 +202,7 @@ function cambiarInterfaz(tipo) {
              document.getElementById('detergentes').style.display = "block";
              //document.getElementById('conteneor').style.opacity = 0;
              document.getElementById('conteneor').style.display = "none";
+             document.getElementById('vistas-lavado').style.display = "none";
 
 
 
@@ -207,6 +216,7 @@ function cambiarInterfaz(tipo) {
                 document.getElementById('detergentes').style.display = "none";
                 //document.getElementById('conteneor').style.opacity = 0;
                 document.getElementById('conteneor').style.display = "none";
+                document.getElementById('vistas-lavado').style.display = "none";
 
 
             }
@@ -232,6 +242,8 @@ function cambiarInterfaz(tipo) {
                 document.getElementById('texto').innerHTML = "En proceso...";
                 //document.getElementById('conteneor').style.opacity = 1;
                 document.getElementById('conteneor').style.display = "block";
+                document.getElementById('vistas-lavado').style.display = "block";
+
 
 
             }    
@@ -267,7 +279,9 @@ function conectaLavadora() {
         document.getElementById('detpor').innerHTML = lavadora.nivelDetergente + "%";
         document.getElementById('suapor').innerHTML = lavadora.nivelSuavizante + "%";
 
-
+        humedad = lavadora.humedad;
+        consumo = lavadora.consumo;
+        tempActual = lavadora.temperaturaAgua;
 
         var bloqueo = document.getElementById("lock");
             lock.addEventListener("click", function () {
@@ -300,6 +314,26 @@ function conectaLavadora() {
                     mover(2);
 
             });
+
+            lavadora.on("consumo", function () {
+
+                document.getElementById('consumo').innerHTML = (lavadora.consumo/1000).toString().substring(0, 5) + "kW";
+
+            });
+            lavadora.on("humedad", function () {
+
+                document.getElementById('humedad').innerHTML = lavadora.humedad + "%";
+
+            });
+            lavadora.on("temperaturaAgua", function () {
+
+                document.getElementById('tempActual').innerHTML = lavadora.temperaturaAgua;
+
+            });
+
+            var consumo;
+var tempActual;
+var humedad;
 
 
          
@@ -448,6 +482,10 @@ function lavar(callback) {
 
     cambiarInterfaz(3);
     console.log("Iniciar lavado");
+
+    document.getElementById('tipoo').innerHTML = document.querySelector( '.counter2' ).innerHTML;
+    document.getElementById('tempElegida').innerHTML = tempLavado;
+    document.getElementById('centriElegido').innerHTML = centLavado;
     lavadora.puertaBloqueada = true; // Bloquear puerta durante el lavado
     console.log("Puerta bloqueada");
     tiempoSinLavarCentrifugar = detergente + suavizante + 2*(lavadora.peso/100) - 3*(lavadora.peso/1000);
@@ -486,6 +524,10 @@ function lavar(callback) {
                                     console.log("Fin del lavado!!!");
                                     optBar(0);
                                     clearInterval(inter);
+                                    minuts=0;
+                                    cuentaAtras=0;
+                                    firstCuenta = true;
+                                    document.getElementById('timeretardo').innerHTML = "00:00 (100%)";
                                     var animation = document.styleSheets[0].cssRules[3];
                                     document.getElementsByClassName('blob')[0].style.border = "5px solid #00FF00";
                                     animation.deleteRule('0%');
