@@ -1087,6 +1087,25 @@ function crearModal(tipo, texto){
         }
    
     }
+    else if(tipo == 3){
+
+        document.getElementById('content').innerHTML +=  "<h1 style=\"text-align: center;\">Ajustes</h1>" ;
+        var newDiv = document.createElement("div");
+        newDiv.id = "opcionesss";
+        document.getElementById('content').appendChild(newDiv);
+        document.getElementById('opcionesss').style.display = "flex";
+        document.getElementById('opcionesss').style.textAlign = "center";
+        document.getElementById('opcionesss').style.justifyContent = "space-evenly";
+        document.getElementById('opcionesss').style.marginLeft = "43px";
+        document.getElementById('content').style.width = "550px";
+
+        document.getElementById('opcionesss').innerHTML +=  "<div><h3>Idioma</h3><select name=\"Idiomas\"><option value=\"value1\" selected>Español</option><option value=\"value2\" >Chino</option><option value=\"value3\">Ingles</option></select></div>" ;
+        document.getElementById('opcionesss').innerHTML +=  "<div><h3><label for=\"cbox1\">Descriptivo</label></h3><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"> </div>" ;
+        document.getElementById('opcionesss').innerHTML +=  "<div><h3>Wi-Fi</h3><select name=\"Wifi\"><option value=\"value1\" selected>CableWorld2.4</option><option value=\"value2\" >CableWorld5</option><option value=\"value3\">CableWorld7</option></select></div>" ;
+
+        
+   
+    }
     
     
     document.getElementById('open-modal').style.visibility = "visible";
