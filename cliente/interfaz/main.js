@@ -341,15 +341,18 @@ function lavar(callback) {
     lavadora.puertaBloqueada = true; // Bloquear puerta durante el lavado
     console.log("Puerta bloqueada");
     tiempoSinLavarCentrifugar = detergente + suavizante + 2*(lavadora.peso/100) - 3*(lavadora.peso/1000);
-    setInterval(function(){ decrementarTiempo(tiempoSinLavarCentrifugar); },1000);
+    var inter = setInterval(function(){ decrementarTiempo(tiempoSinLavarCentrifugar); },1000);
     // Llenar de agua el tambor (para lavado)
     console.log("Llenar de agua (para lavado)...")
+    optBar(1);
     llenar("nivelAgua", "tomaAgua", nivelAgua, function () {
         // Detergente
         console.log("Poner detergente...");
+        optBar(0);
         vaciar("nivelDetergente", "tomaDetergente", lavadora.nivelDetergente - detergente, function () {
             // Lavado
             console.log("Lavar...")
+            optBar(0);
             lavadora.tamborRevoluciones = revolucionesLavado;
             termostato("temperaturaAgua", "resistenciaAgua", temperaturaLavado, tiempoLavado, function () {
                 // Vaciar agua
@@ -360,15 +363,19 @@ function lavar(callback) {
                     llenar("nivelAgua", "tomaAgua", nivelAgua, function () {
                         // Suavizante
                         console.log("Poner suavizante");
+                        optBar(0);
                         vaciar("nivelSuavizante", "tomaSuavizante", lavadora.nivelSuavizante - suavizante, function () {
                             // Vaciar agua
                             console.log("Vaciar tambor de agua...");
                             vaciar("nivelAgua", "desague", 0, function () {
                                 // Centrifugar
                                 console.log("Centrifugar...")
+                                optBar(0);
                                 lavadora.tamborRevoluciones = revolucionesCentrifugado;
                                 setTimeout(function () {
                                     console.log("Fin del lavado!!!");
+                                    optBar(0);
+                                    clearInterval(inter);
                                     lavadora.tamborRevoluciones = 0; // parar motor
                                     lavadora.puertaBloqueada = false; // desbloquear puerta
                                     //callback();
