@@ -778,23 +778,12 @@ small {
       background-color: #55b776;
       transition: all .8s;
   }
-/*
-.btn {
-  background-color: #55b776;
-  margin: 5px;
-  width: 75px;
-  color: white;
-}
-.btn:hover {
-  color: white;
-}
-.btn:focus {
-  color: white;
-}
-.btn-container {
+
+
+
+/* boton volver inicio */
+#volverInicioButton {
   display: flex;
-  justify-content: center;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-}*/
+    justify-content: center;
+    margin: 0 auto;
+}
