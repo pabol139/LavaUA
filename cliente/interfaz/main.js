@@ -2,6 +2,7 @@ var lavadora;
 var tiempo;
 var textoDinamico;
 var tempLavado;
+var tempSecado;
 var centLavado;
 var tempSecado;
 var centSecado;
@@ -327,15 +328,26 @@ function conectaLavadora() {
                 document.getElementById('humedad').innerHTML = lavadora.humedad + "%";
 
             });
-            lavadora.on("temperaturaAgua", function () {
 
-                document.getElementById('tempActual').innerHTML = lavadora.temperaturaAgua;
+            if(accion == "Lavar"){
 
-            });
+                lavadora.on("temperaturaAgua", function () {
 
-            var consumo;
-var tempActual;
-var humedad;
+                    document.getElementById('tempActual').innerHTML = lavadora.temperaturaAgua;
+    
+                });
+
+            }
+            else{
+                lavadora.on("temperaturaAire", function () {
+
+                    document.getElementById('tempActual').innerHTML = lavadora.temperaturaAire;
+    
+                });
+
+
+            }
+
 
 
          
@@ -591,6 +603,13 @@ function secar(callback) {
 
     cambiarInterfaz(3);
     console.log("Iniciar Secado");
+
+    document.getElementById('tipoo').innerHTML = document.querySelector( '.counter3' ).innerHTML;
+    document.getElementById('tempElegida').innerHTML = tempLavado;
+    document.getElementById('centriElegido').innerHTML = centLavado;
+
+
+
     lavadora.puertaBloqueada = true; // Bloquear puerta durante el secado
     console.log("Puerta bloqueada");
     //tiempoSinLavarCentrifugar = detergente + suavizante + 2*(lavadora.peso/100) - 3*(lavadora.peso/1000);
