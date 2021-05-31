@@ -786,7 +786,10 @@ small {
 
 /* boton volver inicio */
 #volverInicioButton {
-  display: flex;
-    justify-content: center;
-    margin: 0 auto;
+  display: none;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+  left: -36px;
+  top: -4em;
 }

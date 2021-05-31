@@ -15,6 +15,15 @@ var interfazActual =  "lavadoSecado";
 
 
 /* TRANSICION */ 
+function reinicio(){
+
+    interfazActual =  "lavadoSecado";
+    mover(1);
+    document.getElementById('timeretardo').innerHTML = "";
+    document.getElementById('conteneor').style.display = "none";
+    document.getElementById('volverInicioButton').style.display = "none";
+
+}
 
 
 function actividad(activo) {
@@ -197,6 +206,8 @@ function cambiarInterfaz(tipo) {
                 interfazActual = "lavado";
 
                 document.getElementById('lavarScreen').style.opacity = 0;
+                document.getElementById('lavarScreen').style.visibility = "hidden";
+
 
                 mover(3);
 
@@ -400,11 +411,10 @@ function decrementarTiempo(t){
     }else{
         console.log("minuto: "+(cuentaAtras));
         stringCuenta= cuentaAtras.toString().split(".");
-
-        
-
-        document.getElementById('timeretardo').innerHTML = stringCuenta[0]+":"+stringCuenta[1].substring(0, 2)+" ("+Math.trunc(100-((cuentaAtras*100)/minuts))+"%)"; 
+        seg = ((parseInt(stringCuenta[1])*60)/100);
+        document.getElementById('timeretardo').innerHTML = stringCuenta[0]+":"+seg.toString().substring(0, 2)+" ("+Math.trunc(100-((cuentaAtras*100)/minuts))+"%)"; 
     }
+    
 
 }
 
@@ -422,10 +432,6 @@ function lavar(callback) {
         tiempoLavado = minutsLavado * 1000,
         revolucionesCentrifugado = centLavado,
         tiempoCentrifugado = minutsCentrifugado * 1000;
-
-
-    
-
 
 
     if(textoAvisos == ""){
@@ -480,6 +486,7 @@ function lavar(callback) {
                                     animation.appendRule('  70% {transform: scale(1);box-shadow: 0 0 0 35px rgba(0, 255, 0, 0); }');
                                     animation.appendRule('  100% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }');
                                     document.getElementById('texto').innerHTML = "¡Finalizado!"; 
+                                    document.getElementById('volverInicioButton').style.display = "block";
                                     lavadora.tamborRevoluciones = 0; // parar motor
                                     lavadora.puertaBloqueada = false; // desbloquear puerta
                                     //callback();
