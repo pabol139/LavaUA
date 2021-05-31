@@ -2,7 +2,6 @@ var lavadora;
 var tiempo;
 var textoDinamico;
 var tempLavado;
-var tempSecado;
 var centLavado;
 var tempSecado;
 var centSecado;
@@ -608,8 +607,8 @@ function secar(callback) {
     console.log("Iniciar Secado");
 
     document.getElementById('tipoo').innerHTML = document.querySelector( '.counter3' ).innerHTML;
-    document.getElementById('tempElegida').innerHTML = tempLavado;
-    document.getElementById('centriElegido').innerHTML = centLavado;
+    document.getElementById('tempElegida').innerHTML = tempSecado;
+    document.getElementById('centriElegido').innerHTML = centSecado;
 
     console.log("TIEMPO SECADO: "+tiempoSecado);
 
