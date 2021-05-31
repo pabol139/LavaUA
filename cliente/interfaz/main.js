@@ -10,6 +10,9 @@ var minutsCentrifugado = 0;
 var minutsSecado = 0;
 var textoAvisos = "";
 var interfazActual =  "lavadoSecado";
+var index = 0, total = 8;
+var index2 = 0, total2 = 2;
+var index3 = 0, total3 = 5;
 
 
 
@@ -18,10 +21,16 @@ var interfazActual =  "lavadoSecado";
 function reinicio(){
 
     interfazActual =  "lavadoSecado";
+    index = 0;
+    index2 = 0;
+    index3 = 0;
     mover(1);
     document.getElementById('timeretardo').innerHTML = "";
     document.getElementById('conteneor').style.display = "none";
     document.getElementById('volverInicioButton').style.display = "none";
+    document.getElementById("blob").style.width = "350px";
+    document.getElementById("blob").style.height = "350px";
+    document.getElementById('texto').style.fontSize = "35px";
 
 }
 
@@ -557,9 +566,7 @@ function plClick(tipo){
 
 
 
-var index = 0, total = 8;
-var index2 = 0, total2 = 2;
-var index3 = 0, total3 = 5;
+
 
 function slide(offset, tipo) {
 
