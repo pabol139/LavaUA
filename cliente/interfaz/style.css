@@ -153,6 +153,14 @@ img{
 
 
 }
+#wifi:hover{
+
+
+  color: white;
+  cursor: default;
+
+}
+
 
 .navbar li a{
 
@@ -952,3 +960,31 @@ height: 15px;
 
   display: none;
 }
+
+#textpuerta{
+  display: block;
+  position: absolute;
+  /* left: 6em; */
+  top: 2.2em;
+  right: 14em;
+}
+
+#textBloqueo{
+  
+  display: block;
+  position: absolute;
+  color: white;
+  right: 9em;
+  top: 2.2em;
+}
+
+.navbar i{
+
+display: block;
+
+}
+
+.navbar span{
+
+  font-size: 20px;  
+  }

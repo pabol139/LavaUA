@@ -290,7 +290,7 @@ function conectaLavadora() {
                 lavadora.puertaBloqueada = !lavadora.puertaBloqueada;
             });
             lavadora.on("puertaBloqueada", function (bloqueado) {
-                bloqueo.innerHTML = bloqueado ? "<i class=\"fas fa-lock\"></i>" : "<i class=\"fas fa-lock-open\"></i>";
+                bloqueo.innerHTML = bloqueado ? "<i class=\"fas fa-lock\"></i><span class=\"textoOculto\">Bloqueo</span>" : "<i class=\"fas fa-lock-open\"></i><span class=\"textoOculto\">Bloqueo</span>";
             });
 
             lavadora.on("nivelDetergente", function () {
@@ -357,18 +357,26 @@ function inicio() {
 
         reloj();
             
-        if(lavadora.puertaAbierta == true)
+        if(lavadora.puertaAbierta == true){
+            document.getElementById("puerta").style.filter = "invert(15%) sepia(89%) saturate(7107%) hue-rotate(3deg) brightness(95%) contrast(116%)";
+
+            document.getElementById("textpuerta").style.color = "#f00";
+
+        }
+
+        else{
             document.getElementById("puerta").style.filter = "invert(18%) sepia(99%) saturate(6525%) hue-rotate(120deg) brightness(102%) contrast(104%)";
 
-        else
-            document.getElementById("puerta").style.filter = "invert(15%) sepia(89%) saturate(7107%) hue-rotate(3deg) brightness(95%) contrast(116%)";
+            document.getElementById("textpuerta").style.color = "#008100";
+
+        }
 
 
         if(lavadora.puertaBloqueada == true)
-            document.getElementById("lock").innerHTML = "<i class=\"fas fa-lock\"></i>"
+            document.getElementById("lock").innerHTML = "<i class=\"fas fa-lock\"></i><span class=\"textoOculto\">Bloqueo</span>"
 
         else
-            document.getElementById("lock").innerHTML = "<i class=\"fas fa-lock-open\"></i>"
+            document.getElementById("lock").innerHTML = "<i class=\"fas fa-lock-open\"></i><span class=\"textoOculto\">Bloqueo</span>"
 
     
             
@@ -678,11 +686,19 @@ function reloj(){
 
     if(document.getElementById('cbox1').checked == true){
 
+        document.getElementById('puerta').style.top= ".3em";
+        document.getElementById('puerta').style.right= "18.5em";
+        document.getElementById('lock').style.marginRight = " 15px";
         for (var i = 0; i < escondidos.length; i++){
             escondidos[i].style.display = "block";
         }
     }
     else{
+
+        document.getElementById('puerta').style.top= ".6em";
+        document.getElementById('puerta').style.right= "13em";
+        document.getElementById('lock').style.marginRight = "0px";
+
         for (var i = 0; i < escondidos.length; i++){
             escondidos[i].style.display = "none";
         }
