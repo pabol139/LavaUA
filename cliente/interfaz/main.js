@@ -9,6 +9,7 @@ var minutsLavado = 0;
 var minutsCentrifugado = 0;
 var minutsSecado = 0;
 var textoAvisos = "";
+var interfazActual =  "lavadoSecado";
 
 
 
@@ -24,41 +25,29 @@ function actividad(activo) {
             document.getElementById('lavarOpciones').style.transition = 'opacity 1.5s';
             document.getElementById('opciones').style.transition = 'opacity 1.5s';
             document.getElementById('bottom-botones').style.transition = 'opacity 1.5s';
+            document.getElementById('conteneor').style.transition = 'opacity 1.5s';
 
 
             if(activo == 1){
 
                     /* CAMBIAR COLOR DE LA BOLA */
-                var animation = document.styleSheets[0].cssRules[3];
-                document.getElementsByClassName('blob')[0].style.border = "5px solid #00FF00";
-                animation.deleteRule('0%');
-                animation.deleteRule('70%');
-                animation.deleteRule('100%');
-                animation.appendRule('	0% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }');
-                animation.appendRule('	70% {transform: scale(1);box-shadow: 0 0 0 35px rgba(0, 255, 0, 0); }');
-                animation.appendRule('	100% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }');
+                    console.log(interfazActual);
+                if(interfazActual == "lavadoSecado"){
+                    volverInterfaz(1);
+                    console.log("Lavar y secar");
 
-                /* ENSEÑAR LA INTERFAZ */
-                document.getElementById('lavarScreen').style.opacity = 1;
-                document.getElementById('lavarOpciones').style.height = 'auto';
-                document.getElementById('lavarOpciones').style.opacity = 1;
-                document.getElementById('opciones').style.opacity = 1;
-                document.getElementById('bottom-botones').style.opacity = 1;
-
-                console.log();
-
-                if(textoDinamico == "Elige un tipo")
-                    document.getElementById('texto').innerHTML = "Elige un tipo";
+                }
                 else
-                    document.getElementById('texto').innerHTML = textoDinamico;
-
-                slide(0, 0);
-                slide(0, 1);
-                slide(0, 2);
+                    volverInterfaz(2);
+          
             }
             else {
 
                 /* CAMBIAR COLOR DE LA BOLA */
+
+                if(interfazActual == "lavado")
+                     mover(4);
+
                 var animation = document.styleSheets[0].cssRules[3];
                 document.getElementsByClassName('blob')[0].style.border = "5px solid aqua";
                 animation.deleteRule('0%');
@@ -67,10 +56,12 @@ function actividad(activo) {
                 animation.appendRule('	0% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7); }');
                 animation.appendRule('	70% {transform: scale(1);box-shadow: 0 0 0 35px rgba(0, 255, 255, 0); }');
                 animation.appendRule('	100% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); }');
+                document.getElementById('conteneor').style.opacity = 0;
 
                 document.getElementById('lavarScreen').style.opacity = 0;
                 document.getElementById('lavarOpciones').style.opacity = 0;
                 document.getElementById('opciones').style.opacity = 0;
+                
 
                 document.getElementById('texto').innerHTML = "¡Bienvenido!";
 
@@ -80,31 +71,106 @@ function actividad(activo) {
 
 }
 
+
+function volverInterfaz(tipo){
+
+
+
+if(tipo == 1){
+
+
+
+    var animation = document.styleSheets[0].cssRules[3];
+    document.getElementsByClassName('blob')[0].style.border = "5px solid #00FF00";
+    animation.deleteRule('0%');
+    animation.deleteRule('70%');
+    animation.deleteRule('100%');
+    animation.appendRule('	0% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }');
+    animation.appendRule('	70% {transform: scale(1);box-shadow: 0 0 0 35px rgba(0, 255, 0, 0); }');
+    animation.appendRule('	100% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }');
+
+    /* ENSEÑAR LA INTERFAZ */
+    document.getElementById('lavarScreen').style.opacity = 1;
+    document.getElementById('lavarOpciones').style.height = 'auto';
+    document.getElementById('lavarOpciones').style.opacity = 1;
+    document.getElementById('opciones').style.opacity = 1;
+    document.getElementById('bottom-botones').style.opacity = 1;
+    document.getElementById('conteneor').style.opacity = 0;
+
+
+    console.log();
+
+    if(textoDinamico == "Elige un tipo")
+        document.getElementById('texto').innerHTML = "Elige un tipo";
+    else
+        document.getElementById('texto').innerHTML = textoDinamico;
+
+    slide(0, 0);
+    slide(0, 1);
+    slide(0, 2);
+
+}
+else if(tipo == 2){
+
+
+    mover(3);
+
+    var animation = document.styleSheets[0].cssRules[3];
+    document.getElementsByClassName('blob')[0].style.border = "5px solid #ffa500";
+    animation.deleteRule('0%');
+    animation.deleteRule('70%');
+    animation.deleteRule('100%');
+    animation.appendRule('	0% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(255, 165, 0, 0.7); }');
+    animation.appendRule('	70% {transform: scale(1);box-shadow: 0 0 0 35px rgba(255, 165, 0, 0); }');
+    animation.appendRule('	100% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(255, 165, 0, 0); }');
+
+    document.getElementById('texto').innerHTML = "En proceso...";
+    document.getElementById('conteneor').style.opacity = 1;
+
+    /* ENSEÑAR LA INTERFAZ */
+    document.getElementById('lavarScreen').style.opacity = 0;
+    document.getElementById('lavarOpciones').style.height = 'auto';
+    document.getElementById('lavarOpciones').style.opacity = 0;
+    document.getElementById('opciones').style.opacity = 0;
+    document.getElementById('bottom-botones').style.opacity = 0;
+    document.getElementById('conteneor').style.opacity = 1;
+
+}
+    
+}
+
+
 function cambiarInterfaz(tipo) {
 
             if(tipo == 1){
 
                 
              //   document.getElementById('lavarScreen').innerHTML = "";
+            interfazActual = "lavadoSecado";
 
              document.getElementById('secarOpciones').style.display = "none";
              document.getElementById('lavarOpciones').style.display = "flex";
              document.getElementById('retardo').style.display = "inline-block";
              document.getElementById('detergentes').style.display = "block";
+             document.getElementById('conteneor').style.opacity = 0;
 
 
 
             }
             else if (tipo == 2){
 
-
+                interfazActual = "lavadoSecado";
                 document.getElementById('lavarOpciones').style.display = "none";
                 document.getElementById('secarOpciones').style.display = "flex";
                 document.getElementById('retardo').style.display = "none";
                 document.getElementById('detergentes').style.display = "none";
+                document.getElementById('conteneor').style.opacity = 0;
+
 
             }
             else if(tipo == 3){
+
+                interfazActual = "lavado";
 
                 document.getElementById('lavarScreen').style.opacity = 0;
 
@@ -120,6 +186,8 @@ function cambiarInterfaz(tipo) {
                 animation.appendRule('	100% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(255, 165, 0, 0); }');
 
                 document.getElementById('texto').innerHTML = "En proceso...";
+                document.getElementById('conteneor').style.opacity = 1;
+
 
             }    
 
@@ -336,7 +404,6 @@ function lavar(callback) {
 
 
     cambiarInterfaz(3);
-
     console.log("Iniciar lavado");
     lavadora.puertaBloqueada = true; // Bloquear puerta durante el lavado
     console.log("Puerta bloqueada");
@@ -402,7 +469,7 @@ function reloj(){
 
    
     generaErrores();
-    console.log(textoAvisos);
+    console.log(interfazActual);
 
     document.getElementById("hora").innerHTML = String(horas).padStart(2, '0')+':'+String(minutos).padStart(2, '0');
 }
@@ -617,24 +684,31 @@ function mover(activo){
 
 
     if(activo == 1){
-        document.getElementById('inicio').style.left =  -450 + 'px';
+
+        document.getElementById("inicio").style.transform = "translate(-450px,0px)";
         actividad(activo);
     }
     else if(activo == 2){
-        document.getElementById('inicio').style.left =  0 + 'px';
+        document.getElementById("inicio").style.transform = "translate(0px,0px)";
         actividad(activo);
 
     }
     else if(activo == 3){
 
-        document.getElementById("inicio").style.transition = "transform 2s"; 
-        document.getElementById("inicio").style.transform = "translate(475px,-150px)";
+        document.getElementById("inicio").style.transform = "translate(0px,-150px)";
         document.getElementById("blob").style.transition = "1.5s ease-in";
         document.getElementById("blob").style.width = "250px";
         document.getElementById("blob").style.height = "250px";
         document.getElementById('texto').style.transition = "1.5s ease-in";
         document.getElementById('texto').style.fontSize = "25px";
  
+    }
+    else if(activo == 4){
+
+        document.getElementById("inicio").style.transform = "translate(0px, 0px)";
+        document.getElementById("blob").style.width = "350px";
+        document.getElementById("blob").style.height = "350px";
+        document.getElementById('texto').style.fontSize = "35px";
 
     }
  
