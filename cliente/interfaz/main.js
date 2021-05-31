@@ -445,6 +445,7 @@ function termostato(sensor, resistencia, temp, duracion, callback) {
 
 var cuentaAtras=0;
 var firstCuenta=true;
+var cont=0;
 
 function decrementarTiempo(t){
 
@@ -454,6 +455,7 @@ function decrementarTiempo(t){
     console.log("MINUTSS: "+minuts+" T: "+t);
 
     if(firstCuenta){
+        cont=0;
         cuentaAtras = minuts;
         firstCuenta = false;
     }
@@ -467,7 +469,41 @@ function decrementarTiempo(t){
         document.getElementById('timeretardo').innerHTML = "00:00 (100%)";
         console.log("terminao");
     }else{
-        console.log("minuto: "+(cuentaAtras));
+        //console.log("minuto: "+(cuentaAtras));
+        cont=cont+1;
+        console.log(cont);
+        stringCuenta= cuentaAtras.toString().split(".");
+        seg = ((parseInt(stringCuenta[1])*60)/100);
+        document.getElementById('timeretardo').innerHTML = stringCuenta[0]+":"+seg.toString().substring(0, 2)+" ("+Math.trunc(100-((cuentaAtras*100)/minuts))+"%)"; 
+    }
+    
+
+}
+
+function decrementarTiempoSec(t){
+
+    ent = t;
+
+    console.log("MINUTSS: "+minuts+" T: "+t);
+
+    if(firstCuenta){
+        cont=0;
+        cuentaAtras = minuts;
+        firstCuenta = false;
+    }
+    
+    cuentaAtras = cuentaAtras-(minuts/ent);
+    //console.log("hhh");
+    if(cuentaAtras<=0){
+        minuts=0;
+        cuentaAtras=0;
+        firstCuenta = true;
+        document.getElementById('timeretardo').innerHTML = "00:00 (100%)";
+        console.log("terminao");
+    }else{
+        //console.log("minuto: "+(cuentaAtras));
+        cont=cont+1;
+        console.log(cont);
         stringCuenta= cuentaAtras.toString().split(".");
         seg = ((parseInt(stringCuenta[1])*60)/100);
         document.getElementById('timeretardo').innerHTML = stringCuenta[0]+":"+seg.toString().substring(0, 2)+" ("+Math.trunc(100-((cuentaAtras*100)/minuts))+"%)"; 
@@ -612,16 +648,24 @@ function secar(callback) {
 
     console.log("TIEMPO SECADO: "+tiempoSecado);
 
-    lavadora.humedad = 100; // Emulamos la ropa mojada poniendo agua
+    lavadora["tomaAgua"] = true;
+    lavadora["tomaAgua"] = false;; // Emulamos la ropa mojada poniendo agua
     lavadora.puertaBloqueada = true; // Bloquear puerta durante el secado
     console.log("Puerta bloqueada");
-    tiempoSinLavarCentrifugar = tiempoSecado/1000 + 2*(lavadora.peso/100) + 50;
+    tiempoSinLavarCentrifugar = tiempoSecado/1000 + 110;
+    if(temperaturaSecado==60){
+        tiempoSinLavarCentrifugar = tiempoSinLavarCentrifugar - 10;
+    }else if(temperaturaSecado==20){
+        tiempoSinLavarCentrifugar = tiempoSinLavarCentrifugar + 30;
+    }else if(temperaturaSecado!=60 && temperaturaSecado<40 && temperaturaSecado>0){
+        tiempoSinLavarCentrifugar = tiempoSinLavarCentrifugar + 10;
+    }
     console.log("TIEMPO SECADO: "+tiempoSecado);
-    var inter = setInterval(function(){ decrementarTiempo(tiempoSinLavarCentrifugar); },1000);
+    var inter = setInterval(function(){ decrementarTiempoSec(tiempoSinLavarCentrifugar); },1000);
     // Llenar de agua el tambor (para lavado)
     optBar(3);
     optBar(1);
-    optBar(0); //Empieza el secado
+             //Empieza el secado
             // Secado
             console.log("Secar...")
             optBar(0); //Empieza a girar
@@ -1254,13 +1298,13 @@ function optBar(tipo){
             lis[i].className = 'inactive';
 
             if(i==0)
-                lis[i].innerHTML = 'Empiezar secado';
+                lis[i].innerHTML = 'Comienzo secado';
             else if(i==1)
                 lis[i].innerHTML = 'Girar tambor';
             else if(i==2)
                 lis[i].innerHTML = 'Añadir temperatura';
             else if(i==3)
-                lis[i].innerHTML = 'Quitando humedad';
+                lis[i].innerHTML = 'Quitar humedad';
             else if(i==4)
                 lis[i].innerHTML = 'Girar tambor';
             else if(i==5)
