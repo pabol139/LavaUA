@@ -17,6 +17,7 @@ var index3 = 0, total3 = 5;
 var consumo;
 var tempActual;
 var humedad;
+var accion;
 
 
 
@@ -463,6 +464,25 @@ function decrementarTiempo(t){
 }
 
 
+function lavarsecar(xd){
+
+
+    if(accion == "Lavar"){
+
+        console.log("LAVANDO");
+        lavar(1);
+
+    }
+    else{
+        console.log("SECANDO");
+
+        secar(1);
+
+    }
+
+}
+
+
 
 // Realiza un lavado
 function lavar(callback) {
@@ -619,6 +639,9 @@ function secar(callback) {
 }
 
 
+
+
+
 function reloj(){
 
     tiempo = lavadora.reloj;
@@ -685,12 +708,14 @@ function slide(offset, tipo) {
     if(index2+1==1){
         //document.querySelector( '.counter' ).innerHTML = "Lavar";
         document.querySelector( '.counter' ).innerHTML = "<img src=\"img/washing-machine2.svg\" class=\"filter-blue\" width=\"50px\" height=\"50px\" id=\"lavar\"/>Lavar";
-        
+        accion = "Lavar";
         if(offset != 0)
         cambiarInterfaz(1);
       }else if(index2+1==2){
         //document.querySelector( '.counter' ).innerHTML = "Secar";
         document.querySelector( '.counter' ).innerHTML = "<img src=\"img/dry.svg\" class=\"filter-blue\" width=\"50px\" height=\"50px\" id=\"lavar\"/>Secar";
+        accion = "Secar";
+
         if(offset != 0)
         cambiarInterfaz(2);
       }
