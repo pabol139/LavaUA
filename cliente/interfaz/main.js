@@ -267,6 +267,7 @@ document.addEventListener('DOMContentLoaded', conectaLavadora, false);
 function conectaLavadora() {
     lavadora = new Electro();
     textoDinamico = "";
+    document.getElementById('cbox1').checked = true;
 
     lavadora.on("connect", function () {
         console.log("Ya estoy conectado con la lavadora!!!")
