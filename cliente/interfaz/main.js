@@ -848,3 +848,50 @@ function cerrarModal(){
     document.getElementById('open-modal').style.pointerEvents = "none";
 
 }
+
+var progressBar = {
+  Bar : document.getElementById('progress-bar'),
+  Reset : function(){
+    if (this.Bar){
+      this.Bar.find('li').removeClass('active'); 
+    }
+  },
+  Next: function(){
+    $('#progress-bar li:not(.active):first').addClass('active');
+  },
+  Back: function(){
+    $('#progress-bar li.active:last').removeClass('active');
+  }
+}
+
+function optBar(tipo){
+    var lis = document.getElementById("progress-bar").getElementsByTagName("li");
+
+    console.log(lis);
+
+    if(tipo==0){
+        //progressBar.Next();
+        for(var i=0;i<lis.length;i++){
+                    console.log("entraaaaaaa");
+
+            if(lis[i].className === 'active' && lis[i+1].className != 'active'){
+                console.log("entra");
+                //lis[i].className = 'inactive';
+                lis[i+1].className = 'active';
+                i=lis.size;
+            }
+        }
+    }
+    else if(tipo==1){
+        //progressBar.First();
+        lis[0].className = 'active';
+    }
+    else{
+        //progressBar.Reset();
+        for(var i=0;i<lis.length;i++){
+                    console.log("entraaaaaaa");
+
+            lis[i].className = 'inactive';
+        }
+    }
+}
