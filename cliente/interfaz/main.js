@@ -925,27 +925,27 @@ function calculoMinutos(tipo){
             if(document.getElementById("ceroo").checked == true){
                 minutsSecado+=5;
                 tempSecado=0;
-                centLavado=100;
+                centSecado=100;
             }else if(document.getElementById("veintee").checked == true){
                 minutsSecado+=50;
                 tempSecado=20;
-                centLavado=400;
+                centSecado=400;
             }else if(document.getElementById("treintaa").checked == true){
                 minutsSecado+=40;
                 tempSecado=30;
-                centLavado=800;
+                centSecado=800;
             }else if(document.getElementById("cuarentaa").checked == true){
                 minutsSecado+=30;
                 tempSecado=40;
-                centLavado=1000;
+                centSecado=1000;
             }else if(document.getElementById("sesentaa").checked == true){
                 minutsSecado+=20;
                 tempSecado=60;
-                centLavado=1200;
+                centSecado=1200;
             }else if(document.getElementById("noventaa").checked == true){
                 minutsSecado+=10;
                 tempSecado=90;
-                centLavado=1500;
+                centSecado=1500;
             }
         }
 
