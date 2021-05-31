@@ -513,6 +513,22 @@ function lavar(callback) {
     var inter = setInterval(function(){ decrementarTiempo(tiempoSinLavarCentrifugar); },1000);
     // Llenar de agua el tambor (para lavado)
     console.log("Llenar de agua (para lavado)...")
+    optBar(2);
+    var lis = document.getElementById("progress-bar").getElementsByTagName("li");
+    for(var i=0;i<lis.length;i++){
+        if(i=0)
+            lis[i].innerHTML = 'Llenado de Agua';
+        else if(i=1)
+            lis[i].innerHTML = 'Detergente';
+        else if(i=2)
+            lis[i].innerHTML = 'Lavado';
+        else if(i=3)
+            lis[i].innerHTML = 'Suavizante';
+        else if(i=4)
+            lis[i].innerHTML = 'Centrifugado';
+        else if(i=5)
+            lis[i].innerHTML = 'Terminado';
+    }
     optBar(1);
     llenar("nivelAgua", "tomaAgua", nivelAgua, function () {
         // Detergente
@@ -596,7 +612,22 @@ function secar(callback) {
     //tiempoSinLavarCentrifugar = detergente + suavizante + 2*(lavadora.peso/100) - 3*(lavadora.peso/1000);
     //var inter = setInterval(function(){ decrementarTiempo(tiempoSinLavarCentrifugar); },1000);
     // Llenar de agua el tambor (para lavado)
-    console.log("Llenar de agua (para lavado)...")
+    optBar(2);
+    var lis = document.getElementById("progress-bar").getElementsByTagName("li");
+    for(var i=0;i<lis.length;i++){
+        if(i=0)
+            lis[i].innerHTML = 'Empieza el Secado';
+        else if(i=1)
+            lis[i].innerHTML = 'Giro del tambor';
+        else if(i=2)
+            lis[i].innerHTML = 'Temperatura de Secado';
+        else if(i=3)
+            lis[i].innerHTML = 'Quitada humedad';
+        else if(i=4)
+            lis[i].innerHTML = 'Giro del tambor';
+        else if(i=5)
+            lis[i].innerHTML = 'Terminado';
+    }
     optBar(1);
     optBar(0); //Empieza el secado
             // Secado
