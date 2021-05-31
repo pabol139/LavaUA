@@ -663,11 +663,7 @@ img{
   pointer-events: none;
   transition: all 0.3s;
 }
-.modal-window:target {
-  visibility: visible;
-  opacity: 1;
-  pointer-events: auto;
-}
+
 .modal-window > div {
   width: 400px;
   position: absolute;

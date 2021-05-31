@@ -316,7 +316,6 @@ function decrementarTiempo(t){
 // Realiza un lavado
 function lavar(callback) {
     // Obtener parámetros del lavado
-    console.log(lavadora.peso);
     var
         detergente = lavadora.peso/100,
         suavizante = Math.round(detergente/2),
@@ -325,57 +324,62 @@ function lavar(callback) {
         revolucionesLavado = centLavado,
         tiempoLavado = minutsLavado * 1000,
         revolucionesCentrifugado = centLavado,
-        tiempoCentrifugado = minutsCentrifugado * 1000;
+        tiempoCentrifugado = minutsCentrifugado * 1000,
+        textoAvisos = "";
 
-        console.log(temperaturaLavado);
+
+    if(document.getElementById('texto').innerHTML == "Elige un tipo")
+        textoAvisos += "<p style=\"color: red;\">Escoja un plan.</p>"
 
     // Puerta abierta
     if (lavadora.puertaAbierta) {
-        alert("Puerta abierta!!!!");
+
+        textoAvisos += "<p style=\"color: red;\">Cierre la puerta.</p>"
         //MODAL DE CIERRA LA PUERTA CALVO
         //callback();
-        return;
     }
 
     // Hay ropa?
     if (!lavadora.peso) {
-        alert("Parece que no hay ropa en la lavadora.");
+        textoAvisos += "<p style=\"color: red;\">Añada ropa.</p>"
         //MODAL DE PON ROPA FETIDO
         //callback();
-        return;
     }
 
     // Lavadora hasta arriba?
     if (lavadora.peso>4000) {
-        alert("Parece que hay demsiada ropa en la lavadora.");
+        textoAvisos += "<p style=\"color: red;\">Peso mayor a 4kg.</p>"
         //MODAL DE QUITA ROPA FETIDO
         //callback();
-        return;
     }
 
     // Filtro obstruido
     if (lavadora.filtroObstruido) {
-        alert("Parece que el filtro esta pocho.");
+        textoAvisos += "<p style=\"color: red;\">El filtro está obstruido.</p>"
         //MODAL DE FILTRO POCHO CERDO
         //callback();
-        return;
     }
 
     // Insuficiente detergente
     if (lavadora.nivelDetergente<detergente) {
-        alert("Parece que necesitas más detergente."+detergente);
+        textoAvisos += "<p style=\"color: red;\">Añada detergente.</p>"
         //MODAL DE PONLE DETERGENTE GUARRO
         //callback();
-        return;
     }
 
     // Insuficiente suavizante
     if (lavadora.nivelSuavizante<suavizante) {
-        alert("Parece que necesitas más suavizante.");
+        textoAvisos += "<p style=\"color: red;\">Añada suavizante.</p>"
+
         //MODAL DE PONLE SUAVIZANTE GUARRO
         //callback();
-        return;
     }
+  
+
+
+
+    if(textoAvisos == ""){
+
 
     cambiarInterfaz(3);
 
@@ -422,6 +426,9 @@ function lavar(callback) {
             });
         });
     });
+    }
+    else
+        crearModal(2, textoAvisos);
 }
 
 
@@ -787,19 +794,18 @@ function addRetardo(retardo){
 
 }
 
-function crearModal(tipo){
+function crearModal(tipo, texto){
 
     var modal = document.getElementById('open-modal');
     var content = document.getElementById('content');
 
-    console.log(content);
     if(content)
         content.parentNode.removeChild(content);
 
     var newDiv = document.createElement("div");
     newDiv.id = "content";
     modal.appendChild(newDiv);
-    document.getElementById('content').innerHTML +=  "<a href=\"#\" title=\"Cerrar\" class=\"modal-close\">Cerrar</a>" ;
+    document.getElementById('content').innerHTML +=  "<a href=\"#\" title=\"X\" onclick=\"cerrarModal()\" class=\"modal-close\">X</a>" ;
 
     /*RETARDO*/
 
@@ -818,5 +824,27 @@ function crearModal(tipo){
         document.getElementById('botonesRetardo').innerHTML +=  "<button onclick=\"addRetardo(0);\" class=\"botones\"><i class=\"far fa-clock\" style=\"padding-right: 7px;\"></i> Quitar</button>" ;
 
     }
+    else if(tipo == 2){
+
+        console.log("error");
+
+        document.getElementById('content').innerHTML +=  "<h1>Errores</h1>" ;
+        document.getElementById('content').innerHTML +=  "<div>Por favor, solucione esto errores para poder continuar.</div>" ;
+        document.getElementById('content').innerHTML +=  texto;
+    }
     
+
+    
+    document.getElementById('open-modal').style.visibility = "visible";
+    document.getElementById('open-modal').style.opacity = 1;
+    document.getElementById('open-modal').style.pointerEvents = "auto";
+
+}
+
+function cerrarModal(){
+
+    document.getElementById('open-modal').style.visibility = "hidden";
+    document.getElementById('open-modal').style.opacity = 0;
+    document.getElementById('open-modal').style.pointerEvents = "none";
+
 }
