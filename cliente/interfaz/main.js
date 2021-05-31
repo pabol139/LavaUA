@@ -4,6 +4,7 @@ var textoDinamico;
 var tempLavado;
 var centLavado;
 var tempSecado;
+var centSecado;
 var minuts = 0;
 var minutsLavado = 0;
 var minutsCentrifugado = 0;
@@ -555,6 +556,69 @@ function lavar(callback) {
 }
 
 
+
+// Realiza un lavado
+function secar(callback) {
+    // Obtener parámetros del lavado
+    var
+        temperaturaSecado = tempSecado,
+        revolucionesSecado = centSecado,
+        tiempoSecado = minutsSecado * 1000;
+
+
+    if(textoAvisos == ""){
+
+
+    cambiarInterfaz(3);
+    console.log("Iniciar Secado");
+    lavadora.puertaBloqueada = true; // Bloquear puerta durante el secado
+    console.log("Puerta bloqueada");
+    //tiempoSinLavarCentrifugar = detergente + suavizante + 2*(lavadora.peso/100) - 3*(lavadora.peso/1000);
+    //var inter = setInterval(function(){ decrementarTiempo(tiempoSinLavarCentrifugar); },1000);
+    // Llenar de agua el tambor (para lavado)
+    console.log("Llenar de agua (para lavado)...")
+    optBar(1);
+    optBar(0); //Empieza el secado
+            // Secado
+            console.log("Secar...")
+            optBar(0); //Empieza a girar
+            lavadora.tamborRevoluciones = revolucionesSecado;
+            termostato("temperaturaAire", "resistenciaAire", temperaturaSecado, tiempoSecado, function () {
+                optBar(0); //Temperatura a conseguir
+                // Quitar humedad
+                console.log("Quitar humedad de la ropa...");
+                vaciar("humedad", "flujoAire", 0, function () {
+                    optBar(0); //Humedad a 0
+                                // Humedad quitada
+                                console.log("Humedad fuera...")
+                                lavadora.tamborRevoluciones = revolucionesSecado;
+                                optBar(0); //Empieza a girar
+                                setTimeout(function () {
+                                    console.log("Fin del secado!!!");
+                                    optBar(0);
+                                    clearInterval(inter);
+                                    var animation = document.styleSheets[0].cssRules[3];
+                                    document.getElementsByClassName('blob')[0].style.border = "5px solid #00FF00";
+                                    animation.deleteRule('0%');
+                                    animation.deleteRule('70%');
+                                    animation.deleteRule('100%');
+                                    animation.appendRule('  0% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }');
+                                    animation.appendRule('  70% {transform: scale(1);box-shadow: 0 0 0 35px rgba(0, 255, 0, 0); }');
+                                    animation.appendRule('  100% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }');
+                                    document.getElementById('texto').innerHTML = "¡Finalizado!"; 
+                                    document.getElementById('volverInicioButton').style.display = "block";
+                                    lavadora.tamborRevoluciones = 0; // parar motor
+                                    lavadora.puertaBloqueada = false; // desbloquear puerta
+                                    //callback();
+                                }, tiempoSecado);
+                });
+        });
+    }
+    else
+        crearModal(2, textoAvisos);
+}
+
+
 function reloj(){
 
     tiempo = lavadora.reloj;
@@ -861,21 +925,27 @@ function calculoMinutos(tipo){
             if(document.getElementById("ceroo").checked == true){
                 minutsSecado+=5;
                 tempSecado=0;
+                centLavado=100;
             }else if(document.getElementById("veintee").checked == true){
                 minutsSecado+=50;
                 tempSecado=20;
+                centLavado=400;
             }else if(document.getElementById("treintaa").checked == true){
                 minutsSecado+=40;
                 tempSecado=30;
+                centLavado=800;
             }else if(document.getElementById("cuarentaa").checked == true){
                 minutsSecado+=30;
                 tempSecado=40;
+                centLavado=1000;
             }else if(document.getElementById("sesentaa").checked == true){
                 minutsSecado+=20;
                 tempSecado=60;
+                centLavado=1200;
             }else if(document.getElementById("noventaa").checked == true){
                 minutsSecado+=10;
                 tempSecado=90;
+                centLavado=1500;
             }
         }
 
