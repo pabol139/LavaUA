@@ -8,6 +8,7 @@ var minuts = 0;
 var minutsLavado = 0;
 var minutsCentrifugado = 0;
 var minutsSecado = 0;
+var textoAvisos = "";
 
 
 
@@ -324,57 +325,10 @@ function lavar(callback) {
         revolucionesLavado = centLavado,
         tiempoLavado = minutsLavado * 1000,
         revolucionesCentrifugado = centLavado,
-        tiempoCentrifugado = minutsCentrifugado * 1000,
-        textoAvisos = "";
+        tiempoCentrifugado = minutsCentrifugado * 1000;
 
 
-    if(document.getElementById('texto').innerHTML == "Elige un tipo")
-        textoAvisos += "<p style=\"color: red;\">Escoja un plan.</p>"
-
-    // Puerta abierta
-    if (lavadora.puertaAbierta) {
-
-        textoAvisos += "<p style=\"color: red;\">Cierre la puerta.</p>"
-        //MODAL DE CIERRA LA PUERTA CALVO
-        //callback();
-    }
-
-    // Hay ropa?
-    if (!lavadora.peso) {
-        textoAvisos += "<p style=\"color: red;\">Añada ropa.</p>"
-        //MODAL DE PON ROPA FETIDO
-        //callback();
-    }
-
-    // Lavadora hasta arriba?
-    if (lavadora.peso>4000) {
-        textoAvisos += "<p style=\"color: red;\">Peso mayor a 4kg.</p>"
-        //MODAL DE QUITA ROPA FETIDO
-        //callback();
-    }
-
-    // Filtro obstruido
-    if (lavadora.filtroObstruido) {
-        textoAvisos += "<p style=\"color: red;\">El filtro está obstruido.</p>"
-        //MODAL DE FILTRO POCHO CERDO
-        //callback();
-    }
-
-    // Insuficiente detergente
-    if (lavadora.nivelDetergente<detergente) {
-        textoAvisos += "<p style=\"color: red;\">Añada detergente.</p>"
-        //MODAL DE PONLE DETERGENTE GUARRO
-        //callback();
-    }
-
-    // Insuficiente suavizante
-    if (lavadora.nivelSuavizante<suavizante) {
-        textoAvisos += "<p style=\"color: red;\">Añada suavizante.</p>"
-
-        //MODAL DE PONLE SUAVIZANTE GUARRO
-        //callback();
-    }
-  
+    
 
 
 
@@ -439,7 +393,9 @@ function reloj(){
     minutos = tiempo.getMinutes();
     segundos = tiempo.getSeconds();
 
-
+   
+    generaErrores();
+    console.log(textoAvisos);
 
     document.getElementById("hora").innerHTML = String(horas).padStart(2, '0')+':'+String(minutos).padStart(2, '0');
 }
@@ -826,14 +782,24 @@ function crearModal(tipo, texto){
     }
     else if(tipo == 2){
 
-        console.log("error");
 
-        document.getElementById('content').innerHTML +=  "<h1>Errores</h1>" ;
-        document.getElementById('content').innerHTML +=  "<div>Por favor, solucione esto errores para poder continuar.</div>" ;
-        document.getElementById('content').innerHTML +=  texto;
+        if(textoAvisos != ""){
+
+            console.log("error");
+
+            document.getElementById('content').innerHTML +=  "<h1>Errores</h1>" ;
+            document.getElementById('content').innerHTML +=  "<div>Por favor, solucione esto errores para poder continuar.</div>" ;
+            document.getElementById('content').innerHTML +=  textoAvisos;
+
+        }
+        else{
+            document.getElementById('content').innerHTML +=  "<h1>Errores</h1>" ;
+            document.getElementById('content').innerHTML +=  "<div>¡No hay errores en estos momentos!</div>" ;
+            
+        }
+   
     }
     
-
     
     document.getElementById('open-modal').style.visibility = "visible";
     document.getElementById('open-modal').style.opacity = 1;
@@ -846,5 +812,72 @@ function cerrarModal(){
     document.getElementById('open-modal').style.visibility = "hidden";
     document.getElementById('open-modal').style.opacity = 0;
     document.getElementById('open-modal').style.pointerEvents = "none";
+
+}
+
+function generaErrores(){
+
+    var
+        detergente = lavadora.peso/100,
+        suavizante = Math.round(detergente/2);
+
+    
+    textoAvisos = "";
+
+
+    if(document.getElementById('texto').innerHTML == "Elige un tipo")
+        textoAvisos += "<p style=\"color: red;\">Escoja un plan.</p>"
+
+    // Puerta abierta
+    if (lavadora.puertaAbierta) {
+
+        textoAvisos += "<p style=\"color: red;\">Cierre la puerta.</p>"
+        //MODAL DE CIERRA LA PUERTA CALVO
+        //callback();
+    }
+
+    // Hay ropa?
+    if (!lavadora.peso) {
+        textoAvisos += "<p style=\"color: red;\">Añada ropa.</p>"
+        //MODAL DE PON ROPA FETIDO
+        //callback();
+    }
+
+    // Lavadora hasta arriba?
+    if (lavadora.peso>4000) {
+        textoAvisos += "<p style=\"color: red;\">Peso mayor a 4kg.</p>"
+        //MODAL DE QUITA ROPA FETIDO
+        //callback();
+    }
+
+    // Filtro obstruido
+    if (lavadora.filtroObstruido) {
+        textoAvisos += "<p style=\"color: red;\">El filtro está obstruido.</p>"
+        //MODAL DE FILTRO POCHO CERDO
+        //callback();
+    }
+
+    // Insuficiente detergente
+    if (lavadora.nivelDetergente<detergente) {
+        textoAvisos += "<p style=\"color: red;\">El nivel de detergente debe ser mayor a "+detergente+"%"+".</p>";
+        //MODAL DE PONLE DETERGENTE GUARRO
+        //callback();
+    }
+
+    // Insuficiente suavizante
+    if (lavadora.nivelSuavizante<suavizante) {
+        textoAvisos += "<p style=\"color: red;\">El nivel de suavizante debe ser mayor a "+suavizante+"%"+".</p>"
+
+        //MODAL DE PONLE SUAVIZANTE GUARRO
+        //callback();
+    }
+
+    if(textoAvisos != "")
+       document.getElementById("avisos").style.color = "yellow";
+    else
+        document.getElementById("avisos").style.color = "white";
+
+    return textoAvisos;
+
 
 }
