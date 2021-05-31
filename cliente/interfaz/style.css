@@ -117,6 +117,7 @@ img{
 #lavarOpciones{
 
     display: flex;
+    visibility: hidden;
     opacity: 0;
     height: 0;
     justify-content: center;
@@ -335,6 +336,7 @@ img{
     width: 85%;
     height: 74px;
     margin: auto;
+    visibility: hidden;
     opacity: 0;
     /* margin-bottom: 10px; */
     /* padding-top: 0em;*/
@@ -486,6 +488,7 @@ img{
 #bottom-botones{
 
 
+  visibility: hidden;
   opacity: 0;
   margin-top: 2em;
 

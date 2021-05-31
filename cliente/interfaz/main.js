@@ -21,11 +21,11 @@ function actividad(activo) {
 
     if (document.getElementById('inicio')) {
 
-            document.getElementById('lavarScreen').style.transition = 'opacity 1.5s';
-            document.getElementById('lavarOpciones').style.transition = 'opacity 1.5s';
-            document.getElementById('opciones').style.transition = 'opacity 1.5s';
-            document.getElementById('bottom-botones').style.transition = 'opacity 1.5s';
-            document.getElementById('conteneor').style.transition = 'opacity 1.5s';
+            document.getElementById('lavarScreen').style.transition = 'visibility .5s, opacity 1.5s';
+            document.getElementById('lavarOpciones').style.transition = 'visibility .5s, opacity 1.5s';
+            document.getElementById('opciones').style.transition = 'visibility .5s, opacity 1.5s';
+            document.getElementById('bottom-botones').style.transition = 'visibility .5s, opacity 1.5s';
+            document.getElementById('conteneor').style.transition = 'visibility .5s, opacity 1.5s';
 
 
             if(activo == 1){
@@ -55,13 +55,19 @@ function actividad(activo) {
                 animation.deleteRule('100%');
                 animation.appendRule('	0% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7); }');
                 animation.appendRule('	70% {transform: scale(1);box-shadow: 0 0 0 35px rgba(0, 255, 255, 0); }');
+               
+       
+               
                 animation.appendRule('	100% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); }');
-                //document.getElementById('conteneor').style.opacity = 0;
                 document.getElementById('conteneor').style.display = "none";
-
                 document.getElementById('lavarScreen').style.opacity = 0;
                 document.getElementById('lavarOpciones').style.opacity = 0;
                 document.getElementById('opciones').style.opacity = 0;
+                        
+                document.getElementById('lavarScreen').style.visibility = "hidden";
+                document.getElementById('lavarOpciones').style.visibility = "hidden";
+                document.getElementById('opciones').style.visibility = "hidden";
+                document.getElementById('bottom-botones').style.visibility = "hidden";
                 
 
                 document.getElementById('texto').innerHTML = "¡Bienvenido!";
@@ -91,11 +97,17 @@ if(tipo == 1){
     animation.appendRule('	100% {transform: scale(0.95);box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }');
 
     /* ENSEÑAR LA INTERFAZ */
-    document.getElementById('lavarScreen').style.opacity = 1;
+    document.getElementById('lavarScreen').style.visibility = "visible";
+    document.getElementById('lavarOpciones').style.visibility = "visible";
+    document.getElementById('opciones').style.visibility = "visible";
+    document.getElementById('bottom-botones').style.visibility = "visible";
     document.getElementById('lavarOpciones').style.height = 'auto';
+
+    document.getElementById('lavarScreen').style.opacity =1 ;
     document.getElementById('lavarOpciones').style.opacity = 1;
     document.getElementById('opciones').style.opacity = 1;
     document.getElementById('bottom-botones').style.opacity = 1;
+
     //document.getElementById('conteneor').style.opacity = 0;
     document.getElementById('conteneor').style.display = "none";
 
@@ -129,6 +141,12 @@ else if(tipo == 2){
     document.getElementById('texto').innerHTML = "En proceso...";
     //document.getElementById('conteneor').style.opacity = 1;
     document.getElementById('conteneor').style.display = "block";
+
+    document.getElementById('lavarScreen').style.visibility = "hidden";
+    document.getElementById('lavarOpciones').style.visibility = "hidden";
+    document.getElementById('opciones').style.visibility = "hidden";
+    document.getElementById('bottom-botones').style.visibility = "hidden";
+
 
     /* ENSEÑAR LA INTERFAZ */
     document.getElementById('lavarScreen').style.opacity = 0;
@@ -382,6 +400,9 @@ function decrementarTiempo(t){
     }else{
         console.log("minuto: "+(cuentaAtras));
         stringCuenta= cuentaAtras.toString().split(".");
+
+        
+
         document.getElementById('timeretardo').innerHTML = stringCuenta[0]+":"+stringCuenta[1].substring(0, 2)+" ("+Math.trunc(100-((cuentaAtras*100)/minuts))+"%)"; 
     }
 
