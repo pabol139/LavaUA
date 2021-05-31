@@ -328,25 +328,21 @@ function conectaLavadora() {
 
             });
 
-            if(accion == "Lavar"){
+            lavadora.on("temperaturaAgua", function () {
 
-                lavadora.on("temperaturaAgua", function () {
-
-                    document.getElementById('tempActual').innerHTML = lavadora.temperaturaAgua;
+                if(accion == "Lavar")
+                document.getElementById('tempActual').innerHTML = lavadora.temperaturaAgua;
     
-                });
+            });
 
-            }
-            else{
-                lavadora.on("temperaturaAire", function () {
-
+            lavadora.on("temperaturaAire", function () {
+                
+                if(accion == "Secar")
                     document.getElementById('tempActual').innerHTML = lavadora.temperaturaAire;
     
-                });
+            });
 
-
-            }
-
+            
 
 
          
@@ -718,6 +714,8 @@ function reloj(){
 
    
     generaErrores();
+
+
 
     var escondidos = document.getElementsByClassName("textoOculto");
 
