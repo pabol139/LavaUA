@@ -15,7 +15,7 @@
 
 <header>
 	<ul class="navbar">
-		<li><a class="active" onclick="crearModal(3);"><i class="fas fa-cog"></i></a></li>
+		<li><a class="active" onclick="ajustes();"><i class="fas fa-cog"></i></a></li>
 		<li ><a id="hora"></a></li>
 		<div>
 			<li><a class="active" href="#home" id="lock"><i class="fas fa-lock"></i></a></li>
@@ -50,14 +50,14 @@
 <div class="center" id="lavarScreen">
 
 	<div class="opciones" id="opciones">
-		<p id="peso">Peso<img src="img/weight.svg"  width="25px" height="25px" id="pesoo"/><b id="pesopor"></b></p>
+		<p id="peso"><span class="textoOculto">Peso</span> <img src="img/weight.svg"  width="25px" height="25px" id="pesoo"/><b id="pesopor"></b></p>
 		<div class="counter"></div>
 		<button class="paginate left" onclick="prClick(0);return false;"><i></i><i></i></button>
 		<button class="paginate right" onclick="plClick(0);return false;"><i></i><i></i></button>
 
 		<div id="detergentes">
-			<p>Detergente<img src="img/detergente.svg"  width="25px" height="25px" id="det"/><b id="detpor"></b></p>
-			<p>Suavizante<img src="img/bottle.svg"  width="25px" height="25px" id="sua"/><b id="suapor"></b></p>
+			<p style="display: flex;"><span class="textoOculto">Detergente</span> <img src="img/detergente.svg"  width="25px" height="25px" id="det"/> <b id="detpor"></b></p>
+			<p><span class="textoOculto">Suavizante</span> <img src="img/bottle.svg"  width="25px" height="25px" id="sua"/> <b id="suapor"></b></p>
 		</div>
 
 	</div>
@@ -183,6 +183,36 @@
 
 </div>
 
+<div id="open-ajustes" class="ajustes-window">
+<div id="contentt">
+	<a href="#" title="X" onclick="cerrarModal()" class="modal-close">X</a>
+	<h1 style="text-align: center;">Ajustes</h1>
+	<div id="opcionesss">
+		<div>
+			<h3>Idioma</h3>
+			<select name="Idiomas">
+			<option value="value1" selected>Español</option>
+			<option value="value2" >Chino</option>
+			<option value="value3">Ingles</option></select>
+		</div>
+
+		<div>
+			<h3><label for="cbox1">Descriptivo</label></h3>
+			<input type="checkbox" id="cbox1" value="first_checkbox">
+		 </div>
+		 <div>
+			 <h3>Wi-Fi</h3>
+			 <select name="Wifi">
+				 <option value="value1" selected>CableWorld2.4</option>
+				 <option value="value2" >CableWorld5</option>
+				 <option value="value3">CableWorld7</option>
+				</select>
+		</div>
+
+	</div>
+</div>
+</div>
+
 
 <div id="vistas-lavado">
 	
@@ -191,9 +221,9 @@
 		<h2>Parámetros</h2>
 		
 		
-		<p><span id="textoOculto">Tipo</span> <i class="fas fa-tshirt"></i><b id="tipoo"></b></p>
-		<p><span id="textoOculto">Temp Elegida</span> <i class="fas fa-thermometer-half"></i><b id="tempElegida"></b></p>
-		<p><span id="textoOculto">Centrifugado</span> <i class="fas fa-fan"></i><b id="centriElegido"></b></b></p>
+		<p><span class="textoOculto">Tipo</span> <i class="fas fa-tshirt"></i><b id="tipoo"></b></p>
+		<p><span class="textoOculto">Temp Elegida</span> <i class="fas fa-thermometer-half"></i><b id="tempElegida"></b></p>
+		<p><span class="textoOculto">Centrifugado</span> <i class="fas fa-fan"></i><b id="centriElegido"></b></b></p>
 		
 		
 		</div>
@@ -202,9 +232,9 @@
 		
 		<h2>Datos</h2>
 		
-		<p><b id="consumo"></b><i class="fas fa-bolt"></i> <span id="textoOculto">Consumo</span> </p>
-		<p><b id="tempActual">22</b><i class="fas fa-temperature-low"></i> <span id="textoOculto">Temp Actual</span></p>
-		<p><b id="humedad">0%</b><i class="fas fa-tint"></i> <span id="textoOculto">Humedad</span></p>
+		<p><b id="consumo"></b><i class="fas fa-bolt"></i> <span class="textoOculto">Consumo</span> </p>
+		<p><b id="tempActual">22</b><i class="fas fa-temperature-low"></i> <span class="textoOculto">Temp Actual</span></p>
+		<p><b id="humedad">0%</b><i class="fas fa-tint"></i> <span class="textoOculto">Humedad</span></p>
 		
 		</div>
 

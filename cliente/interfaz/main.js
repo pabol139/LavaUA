@@ -675,10 +675,27 @@ function reloj(){
 
    
     generaErrores();
-    console.log(interfazActual);
+
+    var escondidos = document.getElementsByClassName("textoOculto");
+
+
+    if(document.getElementById('cbox1').checked == true){
+
+        for (var i = 0; i < escondidos.length; i++){
+            escondidos[i].style.display = "block";
+        }
+    }
+    else{
+        for (var i = 0; i < escondidos.length; i++){
+            escondidos[i].style.display = "none";
+        }
+
+
+    }
 
     document.getElementById("hora").innerHTML = String(horas).padStart(2, '0')+':'+String(minutos).padStart(2, '0');
 }
+
 /*
 lavadora.on("connect", function () { // Esparar a que la librería se conecte con la lavadora
     console.log("Ya estoy conectado con la lavadora!!")
@@ -1092,25 +1109,7 @@ function crearModal(tipo, texto){
         }
    
     }
-    else if(tipo == 3){
-
-        document.getElementById('content').innerHTML +=  "<h1 style=\"text-align: center;\">Ajustes</h1>" ;
-        var newDiv = document.createElement("div");
-        newDiv.id = "opcionesss";
-        document.getElementById('content').appendChild(newDiv);
-        document.getElementById('opcionesss').style.display = "flex";
-        document.getElementById('opcionesss').style.textAlign = "center";
-        document.getElementById('opcionesss').style.justifyContent = "space-evenly";
-        document.getElementById('opcionesss').style.marginLeft = "43px";
-        document.getElementById('content').style.width = "550px";
-
-        document.getElementById('opcionesss').innerHTML +=  "<div><h3>Idioma</h3><select name=\"Idiomas\"><option value=\"value1\" selected>Español</option><option value=\"value2\" >Chino</option><option value=\"value3\">Ingles</option></select></div>" ;
-        document.getElementById('opcionesss').innerHTML +=  "<div><h3><label for=\"cbox1\">Descriptivo</label></h3><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"> </div>" ;
-        document.getElementById('opcionesss').innerHTML +=  "<div><h3>Wi-Fi</h3><select name=\"Wifi\"><option value=\"value1\" selected>CableWorld2.4</option><option value=\"value2\" >CableWorld5</option><option value=\"value3\">CableWorld7</option></select></div>" ;
-
-        
-   
-    }
+    
     
     
     document.getElementById('open-modal').style.visibility = "visible";
@@ -1125,7 +1124,19 @@ function cerrarModal(){
     document.getElementById('open-modal').style.opacity = 0;
     document.getElementById('open-modal').style.pointerEvents = "none";
 
+    document.getElementById('open-ajustes').style.visibility = "hidden";
+    document.getElementById('open-ajustes').style.opacity = 0;
+    document.getElementById('open-ajustes').style.pointerEvents = "none";
+
 }
+
+function ajustes(){
+
+    document.getElementById('open-ajustes').style.visibility = "visible";
+    document.getElementById('open-ajustes').style.opacity = 1;
+    document.getElementById('open-ajustes').style.pointerEvents = "auto";
+}
+
 
 function generaErrores(){
 
@@ -1169,20 +1180,20 @@ function generaErrores(){
         //callback();
     }
 
+    if(accion == "Lavar"){
+
+        if (lavadora.nivelDetergente<detergente) {
+            textoAvisos += "<p style=\"color: red;\">El nivel de detergente debe ser mayor a "+detergente+"%"+".</p>";
+        }
+    
+        // Insuficiente suavizante
+        if (lavadora.nivelSuavizante<suavizante) {
+            textoAvisos += "<p style=\"color: red;\">El nivel de suavizante debe ser mayor a "+suavizante+"%"+".</p>"
+    
+        }
+    }
     // Insuficiente detergente
-    if (lavadora.nivelDetergente<detergente) {
-        textoAvisos += "<p style=\"color: red;\">El nivel de detergente debe ser mayor a "+detergente+"%"+".</p>";
-        //MODAL DE PONLE DETERGENTE GUARRO
-        //callback();
-    }
-
-    // Insuficiente suavizante
-    if (lavadora.nivelSuavizante<suavizante) {
-        textoAvisos += "<p style=\"color: red;\">El nivel de suavizante debe ser mayor a "+suavizante+"%"+".</p>"
-
-        //MODAL DE PONLE SUAVIZANTE GUARRO
-        //callback();
-    }
+ 
 
     if(textoAvisos != "")
        document.getElementById("avisos").style.color = "yellow";
@@ -1244,15 +1255,15 @@ function optBar(tipo){
             lis[i].className = 'inactive';
 
             if(i==0)
-                lis[i].innerHTML = 'Empieza el Secado';
+                lis[i].innerHTML = 'Empiezar secado';
             else if(i==1)
-                lis[i].innerHTML = 'Giro del tambor';
+                lis[i].innerHTML = 'Girar tambor';
             else if(i==2)
-                lis[i].innerHTML = 'Temperatura de Secado';
+                lis[i].innerHTML = 'Añadir temperatura';
             else if(i==3)
                 lis[i].innerHTML = 'Quitando humedad';
             else if(i==4)
-                lis[i].innerHTML = 'Giro del tambor';
+                lis[i].innerHTML = 'Girar tambor';
             else if(i==5)
                 lis[i].innerHTML = 'Terminado';
         }

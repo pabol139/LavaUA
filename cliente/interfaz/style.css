@@ -177,8 +177,7 @@ img{
     width: 50%;*/
     width: 95%;
     text-align: center;
-    padding: 200px 0 0 0;
-}
+    margin-top: 200px;}
 
 .options{
 
@@ -361,8 +360,8 @@ img{
     cursor: pointer;
     transform: translate3d(0, 0, 0);
     position: absolute;
-    top: 50%;
-    margin-top: -20px;
+      /* top: 50%; */
+      margin-top: -55px;
     color: #007fff;
     -webkit-filter: drop-shadow(0 2px 0px rgba(0, 127, 255, 0.2));  }
 
@@ -427,7 +426,7 @@ img{
 
   position: absolute;
   margin-left: 5em;
-
+  display: flex;
 
 }
 #peso b{
@@ -469,6 +468,11 @@ img{
 }
 
 
+#suapor{
+
+  top: 3.5em;
+}
+
 
 #detergentes p{
 
@@ -485,6 +489,8 @@ img{
   position: absolute;
 }
 
+
+
 #bottom-botones{
 
 
@@ -497,7 +503,7 @@ img{
 #detergentes{
 
   position: absolute;
-  top: 11.5em;
+  top: -1em;
   right: 5em;
 }
 
@@ -519,7 +525,6 @@ img{
   .paginate.left {
     right: 62%;
     position: absolute;
-    top: 16em;
   }
   .paginate.left i {
     transform-origin: 0% 50%;
@@ -557,7 +562,6 @@ img{
   .paginate.right {
     left: 60%;
     position: absolute;
-    top: 16em;
   }
   .paginate.right i {
     transform-origin: 100% 50%;
@@ -682,6 +686,8 @@ img{
 .modal-window h1 {
   font-size: 150%;
   margin: 0 0 15px;
+  text-align: center;
+
 }
 .modal-close {
   color: #aaa;
@@ -717,6 +723,77 @@ small {
   padding-right: 0.3em;
 }
 
+/*AJUSTES*/
+
+
+.ajustes-window {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+
+.ajustes-window > div {
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2em;
+  background: white;
+}
+.ajustes-window header {
+  font-weight: bold;
+}
+.ajustes-window h1 {
+  font-size: 150%;
+  margin: 0 0 15px;
+}
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+}
+.modal-close:hover {
+  color: black;
+}
+
+.ajustes-window > div {
+  border-radius: 1rem;
+}
+.ajustes-window div:not(:last-of-type) {
+  margin-bottom: 15px;
+}
+
+#opcionesss{
+
+display: flex;
+text-align: center;
+justify-content: space-evenly;
+margin-left: -9px;
+width: 550px;
+
+}
+
+#contentt{
+
+  width: 550px;
+
+
+}
 
 /* barra tep progress */
 
@@ -831,6 +908,24 @@ small {
 
 #vistas-lavado{
 
+
+  display: none;
+}
+
+
+select, input[type="checkbox"] {
+
+  padding: 5px;
+  border: 1px solid #007fff;
+  border-radius: 5px;
+}
+
+input[type="checkbox"] {
+width: 15px;
+height: 15px;
+}
+
+.textoOculto{
 
   display: none;
 }
