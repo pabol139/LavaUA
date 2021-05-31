@@ -723,7 +723,7 @@ small {
   }
   .progressbar li {
       list-style-type: none;
-      width: 25%;
+      width: 16%;
       float: left;
       font-size: 12px;
       position: relative;
