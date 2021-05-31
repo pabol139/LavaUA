@@ -452,6 +452,8 @@ function decrementarTiempo(t){
     ent = (minuts/5)*5;
     ent = ent + t;
 
+    console.log("MINUTSS: "+minuts+" T: "+t);
+
     if(firstCuenta){
         cuentaAtras = minuts;
         firstCuenta = false;
@@ -526,21 +528,6 @@ function lavar(callback) {
     // Llenar de agua el tambor (para lavado)
     console.log("Llenar de agua (para lavado)...")
     optBar(2);
-    var lis = document.getElementById("progress-bar").getElementsByTagName("li");
-    for(var i=0;i<lis.length;i++){
-        if(i=0)
-            lis[i].innerHTML = 'Llenado de Agua';
-        else if(i=1)
-            lis[i].innerHTML = 'Detergente';
-        else if(i=2)
-            lis[i].innerHTML = 'Lavado';
-        else if(i=3)
-            lis[i].innerHTML = 'Suavizante';
-        else if(i=4)
-            lis[i].innerHTML = 'Centrifugado';
-        else if(i=5)
-            lis[i].innerHTML = 'Terminado';
-    }
     optBar(1);
     llenar("nivelAgua", "tomaAgua", nivelAgua, function () {
         // Detergente
@@ -624,29 +611,16 @@ function secar(callback) {
     document.getElementById('tempElegida').innerHTML = tempLavado;
     document.getElementById('centriElegido').innerHTML = centLavado;
 
+    console.log("TIEMPO SECADO: "+tiempoSecado);
 
-
+    lavadora.humedad = 100; // Emulamos la ropa mojada poniendo agua
     lavadora.puertaBloqueada = true; // Bloquear puerta durante el secado
     console.log("Puerta bloqueada");
-    //tiempoSinLavarCentrifugar = detergente + suavizante + 2*(lavadora.peso/100) - 3*(lavadora.peso/1000);
-    //var inter = setInterval(function(){ decrementarTiempo(tiempoSinLavarCentrifugar); },1000);
+    tiempoSinLavarCentrifugar = tiempoSecado/1000 + 2*(lavadora.peso/100) + 50;
+    console.log("TIEMPO SECADO: "+tiempoSecado);
+    var inter = setInterval(function(){ decrementarTiempo(tiempoSinLavarCentrifugar); },1000);
     // Llenar de agua el tambor (para lavado)
-    optBar(2);
-    var lis = document.getElementById("progress-bar").getElementsByTagName("li");
-    for(var i=0;i<lis.length;i++){
-        if(i=0)
-            lis[i].innerHTML = 'Empieza el Secado';
-        else if(i=1)
-            lis[i].innerHTML = 'Giro del tambor';
-        else if(i=2)
-            lis[i].innerHTML = 'Temperatura de Secado';
-        else if(i=3)
-            lis[i].innerHTML = 'Quitada humedad';
-        else if(i=4)
-            lis[i].innerHTML = 'Giro del tambor';
-        else if(i=5)
-            lis[i].innerHTML = 'Terminado';
-    }
+    optBar(3);
     optBar(1);
     optBar(0); //Empieza el secado
             // Secado
@@ -1224,12 +1198,44 @@ function optBar(tipo){
         //progressBar.First();
         lis[0].className = 'active';
     }
-    else{
+    else if(tipo==2){
         //progressBar.Reset();
         for(var i=0;i<lis.length;i++){
                     console.log("entraaaaaaa");
 
             lis[i].className = 'inactive';
+
+            if(i==0)
+                lis[i].innerHTML = 'Llenado de Agua';
+            else if(i==1)
+                lis[i].innerHTML = 'Detergente';
+            else if(i==2)
+                lis[i].innerHTML = 'Lavado';
+            else if(i==3)
+                lis[i].innerHTML = 'Suavizante';
+            else if(i==4)
+                lis[i].innerHTML = 'Centrifugado';
+            else if(i==5)
+                lis[i].innerHTML = 'Terminado';
+        }
+    }else{
+        for(var i=0;i<lis.length;i++){
+                    console.log("entraaaaaaa");
+
+            lis[i].className = 'inactive';
+
+            if(i==0)
+                lis[i].innerHTML = 'Empieza el Secado';
+            else if(i==1)
+                lis[i].innerHTML = 'Giro del tambor';
+            else if(i==2)
+                lis[i].innerHTML = 'Temperatura de Secado';
+            else if(i==3)
+                lis[i].innerHTML = 'Quitando humedad';
+            else if(i==4)
+                lis[i].innerHTML = 'Giro del tambor';
+            else if(i==5)
+                lis[i].innerHTML = 'Terminado';
         }
     }
 }
